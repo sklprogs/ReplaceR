@@ -1,0 +1,8 @@
+Enter text here.	Введите текст здесь.
+This file must be tab-delimited.	Оригинал и перевод в этом файле должны быть разделены табуляцией.
+file	файл
+this	этот
+get	получить
+dog	собака
+cobra	кобра
+met	встретила

@@ -1,0 +1,1262 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ReplaceR 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-22 23:33+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
+"Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /usr/local/bin/replacer\n"
+
+#: /usr/local/bin/replacer/replacer.py:21
+#: /usr/local/bin/replacer/sharedGUI.py:257
+#: /usr/local/bin/replacer/sharedGUI.py:360
+#: /usr/local/bin/replacer/sharedGUI.py:365
+#: /usr/local/bin/replacer/sharedGUI.py:372
+#: /usr/local/bin/replacer/sharedGUI.py:390
+#: /usr/local/bin/replacer/sharedGUI.py:395
+#: /usr/local/bin/replacer/sharedGUI.py:402
+#: /usr/local/bin/replacer/sharedGUI.py:889
+#: /usr/local/bin/replacer/sharedGUI.py:1232
+#: /usr/local/bin/replacer/sharedGUI.py:1815
+#: /usr/local/bin/replacer/sharedGUI.py:2226
+#: /usr/local/bin/replacer/sharedGUI.py:2239
+#: /usr/local/bin/replacer/sharedGUI.py:2560
+#: /usr/local/bin/replacer/sharedGUI.py:2572
+#: /usr/local/bin/replacer/sharedGUI.py:2590
+#: /usr/local/bin/replacer/sharedGUI.py:2593
+#: /usr/local/bin/replacer/sharedGUI.py:2654
+#: /usr/local/bin/replacer/sharedGUI.py:2663
+#: /usr/local/bin/replacer/sharedGUI.py:2848
+#: /usr/local/bin/replacer/sharedGUI.py:2878
+#: /usr/local/bin/replacer/sharedGUI.py:2885
+#: /usr/local/bin/replacer/shared.py:292
+#: /usr/local/bin/replacer/shared.py:372
+#: /usr/local/bin/replacer/shared.py:415
+#: /usr/local/bin/replacer/shared.py:450
+#: /usr/local/bin/replacer/shared.py:729
+#: /usr/local/bin/replacer/shared.py:771
+#: /usr/local/bin/replacer/shared.py:1223
+#: /usr/local/bin/replacer/shared.py:1320
+#: /usr/local/bin/replacer/shared.py:1337
+#: /usr/local/bin/replacer/shared.py:1381
+#: /usr/local/bin/replacer/shared.py:1395
+#: /usr/local/bin/replacer/shared.py:1454
+#: /usr/local/bin/replacer/shared.py:1468
+#: /usr/local/bin/replacer/shared.py:1508
+#: /usr/local/bin/replacer/shared.py:1519
+#: /usr/local/bin/replacer/shared.py:1612
+#: /usr/local/bin/replacer/shared.py:1659
+#: /usr/local/bin/replacer/shared.py:1689
+#: /usr/local/bin/replacer/shared.py:1905
+#: /usr/local/bin/replacer/shared.py:2003
+#: /usr/local/bin/replacer/shared.py:2091
+#: /usr/local/bin/replacer/shared.py:2105
+#: /usr/local/bin/replacer/shared.py:2133
+#: /usr/local/bin/replacer/shared.py:2139
+#: /usr/local/bin/replacer/shared.py:2292
+#: /usr/local/bin/replacer/shared.py:2346
+#: /usr/local/bin/replacer/shared.py:2369
+#: /usr/local/bin/replacer/shared.py:2385
+#: /usr/local/bin/replacer/shared.py:2400
+#: /usr/local/bin/replacer/shared.py:2424
+#: /usr/local/bin/replacer/shared.py:2740
+#: /usr/local/bin/replacer/shared.py:3217
+#: /usr/local/bin/replacer/shared.py:3223
+#: /usr/local/bin/replacer/shared.py:3577
+#: /usr/local/bin/replacer/shared.py:3614
+#: /usr/local/bin/replacer/shared.py:3665
+msgid "INFO"
+msgstr "ИНФОРМАЦИЯ"
+
+#: /usr/local/bin/replacer/replacer.py:22
+msgid "Press OK to reload the dictionary now."
+msgstr "Нажмите ОК, чтобы перезагрузить словарь."
+
+#: /usr/local/bin/replacer/replacer.py:40
+#: /usr/local/bin/replacer/replacer.py:200
+#: /usr/local/bin/replacer/replacer.py:206
+#: /usr/local/bin/replacer/replacer.py:218
+#: /usr/local/bin/replacer/replacer.py:223
+#: /usr/local/bin/replacer/sharedGUI.py:93
+#: /usr/local/bin/replacer/sharedGUI.py:242
+#: /usr/local/bin/replacer/sharedGUI.py:264
+#: /usr/local/bin/replacer/sharedGUI.py:280
+#: /usr/local/bin/replacer/sharedGUI.py:291
+#: /usr/local/bin/replacer/sharedGUI.py:301
+#: /usr/local/bin/replacer/sharedGUI.py:329
+#: /usr/local/bin/replacer/sharedGUI.py:347
+#: /usr/local/bin/replacer/sharedGUI.py:377
+#: /usr/local/bin/replacer/sharedGUI.py:407
+#: /usr/local/bin/replacer/sharedGUI.py:422
+#: /usr/local/bin/replacer/sharedGUI.py:433
+#: /usr/local/bin/replacer/sharedGUI.py:611
+#: /usr/local/bin/replacer/sharedGUI.py:622
+#: /usr/local/bin/replacer/sharedGUI.py:662
+#: /usr/local/bin/replacer/sharedGUI.py:758
+#: /usr/local/bin/replacer/sharedGUI.py:776
+#: /usr/local/bin/replacer/sharedGUI.py:811
+#: /usr/local/bin/replacer/sharedGUI.py:824
+#: /usr/local/bin/replacer/sharedGUI.py:850
+#: /usr/local/bin/replacer/sharedGUI.py:894
+#: /usr/local/bin/replacer/sharedGUI.py:972
+#: /usr/local/bin/replacer/sharedGUI.py:998
+#: /usr/local/bin/replacer/sharedGUI.py:1444
+#: /usr/local/bin/replacer/sharedGUI.py:1738
+#: /usr/local/bin/replacer/sharedGUI.py:1844
+#: /usr/local/bin/replacer/sharedGUI.py:1866
+#: /usr/local/bin/replacer/sharedGUI.py:1882
+#: /usr/local/bin/replacer/sharedGUI.py:1898
+#: /usr/local/bin/replacer/sharedGUI.py:1914
+#: /usr/local/bin/replacer/sharedGUI.py:1930
+#: /usr/local/bin/replacer/sharedGUI.py:1980
+#: /usr/local/bin/replacer/sharedGUI.py:1993
+#: /usr/local/bin/replacer/sharedGUI.py:2002
+#: /usr/local/bin/replacer/sharedGUI.py:2011
+#: /usr/local/bin/replacer/sharedGUI.py:2020
+#: /usr/local/bin/replacer/sharedGUI.py:2033
+#: /usr/local/bin/replacer/sharedGUI.py:2059
+#: /usr/local/bin/replacer/sharedGUI.py:2089
+#: /usr/local/bin/replacer/sharedGUI.py:2122
+#: /usr/local/bin/replacer/sharedGUI.py:2138
+#: /usr/local/bin/replacer/sharedGUI.py:2154
+#: /usr/local/bin/replacer/sharedGUI.py:2166
+#: /usr/local/bin/replacer/sharedGUI.py:2245
+#: /usr/local/bin/replacer/sharedGUI.py:2547
+#: /usr/local/bin/replacer/sharedGUI.py:2562
+#: /usr/local/bin/replacer/sharedGUI.py:2572
+#: /usr/local/bin/replacer/sharedGUI.py:2612
+#: /usr/local/bin/replacer/sharedGUI.py:2615
+#: /usr/local/bin/replacer/sharedGUI.py:2652
+#: /usr/local/bin/replacer/sharedGUI.py:2663
+#: /usr/local/bin/replacer/sharedGUI.py:2784
+#: /usr/local/bin/replacer/sharedGUI.py:2795
+#: /usr/local/bin/replacer/sharedGUI.py:2812
+#: /usr/local/bin/replacer/sharedGUI.py:2854
+#: /usr/local/bin/replacer/shared.py:126
+#: /usr/local/bin/replacer/shared.py:238
+#: /usr/local/bin/replacer/shared.py:248
+#: /usr/local/bin/replacer/shared.py:262
+#: /usr/local/bin/replacer/shared.py:336
+#: /usr/local/bin/replacer/shared.py:358
+#: /usr/local/bin/replacer/shared.py:398
+#: /usr/local/bin/replacer/shared.py:407
+#: /usr/local/bin/replacer/shared.py:458
+#: /usr/local/bin/replacer/shared.py:464
+#: /usr/local/bin/replacer/shared.py:478
+#: /usr/local/bin/replacer/shared.py:499
+#: /usr/local/bin/replacer/shared.py:516
+#: /usr/local/bin/replacer/shared.py:522
+#: /usr/local/bin/replacer/shared.py:542
+#: /usr/local/bin/replacer/shared.py:562
+#: /usr/local/bin/replacer/shared.py:604
+#: /usr/local/bin/replacer/shared.py:610
+#: /usr/local/bin/replacer/shared.py:628
+#: /usr/local/bin/replacer/shared.py:638
+#: /usr/local/bin/replacer/shared.py:664
+#: /usr/local/bin/replacer/shared.py:689
+#: /usr/local/bin/replacer/shared.py:700
+#: /usr/local/bin/replacer/shared.py:711
+#: /usr/local/bin/replacer/shared.py:721
+#: /usr/local/bin/replacer/shared.py:750
+#: /usr/local/bin/replacer/shared.py:894
+#: /usr/local/bin/replacer/shared.py:928
+#: /usr/local/bin/replacer/shared.py:994
+#: /usr/local/bin/replacer/shared.py:1019
+#: /usr/local/bin/replacer/shared.py:1030
+#: /usr/local/bin/replacer/shared.py:1150
+#: /usr/local/bin/replacer/shared.py:1156
+#: /usr/local/bin/replacer/shared.py:1169
+#: /usr/local/bin/replacer/shared.py:1174
+#: /usr/local/bin/replacer/shared.py:1188
+#: /usr/local/bin/replacer/shared.py:1193
+#: /usr/local/bin/replacer/shared.py:1207
+#: /usr/local/bin/replacer/shared.py:1212
+#: /usr/local/bin/replacer/shared.py:1229
+#: /usr/local/bin/replacer/shared.py:1240
+#: /usr/local/bin/replacer/shared.py:1252
+#: /usr/local/bin/replacer/shared.py:1269
+#: /usr/local/bin/replacer/shared.py:1274
+#: /usr/local/bin/replacer/shared.py:1306
+#: /usr/local/bin/replacer/shared.py:1313
+#: /usr/local/bin/replacer/shared.py:1358
+#: /usr/local/bin/replacer/shared.py:1364
+#: /usr/local/bin/replacer/shared.py:1386
+#: /usr/local/bin/replacer/shared.py:1403
+#: /usr/local/bin/replacer/shared.py:1409
+#: /usr/local/bin/replacer/shared.py:1420
+#: /usr/local/bin/replacer/shared.py:1431
+#: /usr/local/bin/replacer/shared.py:1437
+#: /usr/local/bin/replacer/shared.py:1459
+#: /usr/local/bin/replacer/shared.py:1475
+#: /usr/local/bin/replacer/shared.py:1481
+#: /usr/local/bin/replacer/shared.py:1514
+#: /usr/local/bin/replacer/shared.py:1606
+#: /usr/local/bin/replacer/shared.py:1649
+#: /usr/local/bin/replacer/shared.py:1664
+#: /usr/local/bin/replacer/shared.py:1697
+#: /usr/local/bin/replacer/shared.py:1703
+#: /usr/local/bin/replacer/shared.py:1717
+#: /usr/local/bin/replacer/shared.py:1748
+#: /usr/local/bin/replacer/shared.py:1762
+#: /usr/local/bin/replacer/shared.py:1768
+#: /usr/local/bin/replacer/shared.py:1788
+#: /usr/local/bin/replacer/shared.py:1808
+#: /usr/local/bin/replacer/shared.py:1850
+#: /usr/local/bin/replacer/shared.py:1856
+#: /usr/local/bin/replacer/shared.py:1874
+#: /usr/local/bin/replacer/shared.py:1888
+#: /usr/local/bin/replacer/shared.py:1926
+#: /usr/local/bin/replacer/shared.py:1970
+#: /usr/local/bin/replacer/shared.py:1984
+#: /usr/local/bin/replacer/shared.py:1995
+#: /usr/local/bin/replacer/shared.py:2010
+#: /usr/local/bin/replacer/shared.py:2015
+#: /usr/local/bin/replacer/shared.py:2036
+#: /usr/local/bin/replacer/shared.py:2062
+#: /usr/local/bin/replacer/shared.py:2076
+#: /usr/local/bin/replacer/shared.py:2099
+#: /usr/local/bin/replacer/shared.py:2144
+#: /usr/local/bin/replacer/shared.py:2167
+#: /usr/local/bin/replacer/shared.py:2173
+#: /usr/local/bin/replacer/shared.py:2184
+#: /usr/local/bin/replacer/shared.py:2190
+#: /usr/local/bin/replacer/shared.py:2304
+#: /usr/local/bin/replacer/shared.py:2320
+#: /usr/local/bin/replacer/shared.py:2353
+#: /usr/local/bin/replacer/shared.py:2363
+#: /usr/local/bin/replacer/shared.py:2391
+#: /usr/local/bin/replacer/shared.py:2431
+#: /usr/local/bin/replacer/shared.py:2443
+#: /usr/local/bin/replacer/shared.py:2466
+#: /usr/local/bin/replacer/shared.py:2473
+#: /usr/local/bin/replacer/shared.py:2491
+#: /usr/local/bin/replacer/shared.py:2697
+#: /usr/local/bin/replacer/shared.py:2716
+#: /usr/local/bin/replacer/shared.py:2756
+#: /usr/local/bin/replacer/shared.py:2782
+#: /usr/local/bin/replacer/shared.py:2792
+#: /usr/local/bin/replacer/shared.py:2822
+#: /usr/local/bin/replacer/shared.py:2839
+#: /usr/local/bin/replacer/shared.py:2849
+#: /usr/local/bin/replacer/shared.py:2868
+#: /usr/local/bin/replacer/shared.py:2887
+#: /usr/local/bin/replacer/shared.py:2902
+#: /usr/local/bin/replacer/shared.py:2917
+#: /usr/local/bin/replacer/shared.py:2935
+#: /usr/local/bin/replacer/shared.py:2946
+#: /usr/local/bin/replacer/shared.py:2960
+#: /usr/local/bin/replacer/shared.py:2974
+#: /usr/local/bin/replacer/shared.py:2988
+#: /usr/local/bin/replacer/shared.py:3020
+#: /usr/local/bin/replacer/shared.py:3025
+#: /usr/local/bin/replacer/shared.py:3030
+#: /usr/local/bin/replacer/shared.py:3050
+#: /usr/local/bin/replacer/shared.py:3055
+#: /usr/local/bin/replacer/shared.py:3072
+#: /usr/local/bin/replacer/shared.py:3097
+#: /usr/local/bin/replacer/shared.py:3108
+#: /usr/local/bin/replacer/shared.py:3121
+#: /usr/local/bin/replacer/shared.py:3134
+#: /usr/local/bin/replacer/shared.py:3150
+#: /usr/local/bin/replacer/shared.py:3167
+#: /usr/local/bin/replacer/shared.py:3192
+#: /usr/local/bin/replacer/shared.py:3228
+#: /usr/local/bin/replacer/shared.py:3241
+#: /usr/local/bin/replacer/shared.py:3254
+#: /usr/local/bin/replacer/shared.py:3265
+#: /usr/local/bin/replacer/shared.py:3276
+#: /usr/local/bin/replacer/shared.py:3292
+#: /usr/local/bin/replacer/shared.py:3308
+#: /usr/local/bin/replacer/shared.py:3322
+#: /usr/local/bin/replacer/shared.py:3336
+#: /usr/local/bin/replacer/shared.py:3348
+#: /usr/local/bin/replacer/shared.py:3524
+#: /usr/local/bin/replacer/shared.py:3533
+#: /usr/local/bin/replacer/shared.py:3542
+#: /usr/local/bin/replacer/shared.py:3596
+#: /usr/local/bin/replacer/shared.py:3640
+#: /usr/local/bin/replacer/shared.py:3653
+msgid "WARNING"
+msgstr "ПРЕДУПРЕЖДЕНИЕ"
+
+#: /usr/local/bin/replacer/replacer.py:41
+#: /usr/local/bin/replacer/replacer.py:207
+#: /usr/local/bin/replacer/replacer.py:219
+#: /usr/local/bin/replacer/sharedGUI.py:94
+#: /usr/local/bin/replacer/sharedGUI.py:612
+#: /usr/local/bin/replacer/sharedGUI.py:777
+#: /usr/local/bin/replacer/sharedGUI.py:825
+#: /usr/local/bin/replacer/sharedGUI.py:1423
+#: /usr/local/bin/replacer/sharedGUI.py:1445
+#: /usr/local/bin/replacer/sharedGUI.py:2796
+#: /usr/local/bin/replacer/shared.py:517
+#: /usr/local/bin/replacer/shared.py:1300
+#: /usr/local/bin/replacer/shared.py:1644
+#: /usr/local/bin/replacer/shared.py:1763
+#: /usr/local/bin/replacer/shared.py:2305
+#: /usr/local/bin/replacer/shared.py:2467
+#: /usr/local/bin/replacer/shared.py:3525
+#: /usr/local/bin/replacer/shared.py:3597
+msgid "Empty input is not allowed!"
+msgstr "Пустые входные данные не допускаются!"
+
+#: /usr/local/bin/replacer/replacer.py:64
+msgid "Modify the dictionary"
+msgstr "Изменить словарь"
+
+#: /usr/local/bin/replacer/replacer.py:71
+msgid "Modify the input file"
+msgstr "Изменить входной файл"
+
+#: /usr/local/bin/replacer/replacer.py:77
+msgid "Write the output file"
+msgstr "Записать выходной файл"
+
+#: /usr/local/bin/replacer/replacer.py:83
+#: /usr/local/bin/replacer/replacer.py:96
+msgid "Start clipboard watch"
+msgstr "Следить за буфером"
+
+#: /usr/local/bin/replacer/replacer.py:89
+#: /usr/local/bin/replacer/sharedGUI.py:133
+#: /usr/local/bin/replacer/sharedGUI.py:508
+#: /usr/local/bin/replacer/sharedGUI.py:509
+#: /usr/local/bin/replacer/sharedGUI.py:933
+#: /usr/local/bin/replacer/sharedGUI.py:934
+#: /usr/local/bin/replacer/sharedGUI.py:1369
+#: /usr/local/bin/replacer/sharedGUI.py:1370
+msgid "Quit"
+msgstr "Выйти"
+
+#: /usr/local/bin/replacer/replacer.py:100
+msgid "Stop clipboard watch"
+msgstr "Не следить за буфером"
+
+#: /usr/local/bin/replacer/replacer.py:201
+#: /usr/local/bin/replacer/shared.py:537
+#: /usr/local/bin/replacer/shared.py:557
+#: /usr/local/bin/replacer/shared.py:1783
+#: /usr/local/bin/replacer/shared.py:1803
+#, python-format
+msgid "The condition \"%s\" is not observed!"
+msgstr "Условие \"%s\" не выполнено!"
+
+#: /usr/local/bin/replacer/replacer.py:224
+#: /usr/local/bin/replacer/sharedGUI.py:265
+#: /usr/local/bin/replacer/sharedGUI.py:281
+#: /usr/local/bin/replacer/sharedGUI.py:292
+#: /usr/local/bin/replacer/sharedGUI.py:302
+#: /usr/local/bin/replacer/sharedGUI.py:330
+#: /usr/local/bin/replacer/sharedGUI.py:348
+#: /usr/local/bin/replacer/sharedGUI.py:378
+#: /usr/local/bin/replacer/sharedGUI.py:408
+#: /usr/local/bin/replacer/sharedGUI.py:423
+#: /usr/local/bin/replacer/sharedGUI.py:434
+#: /usr/local/bin/replacer/sharedGUI.py:1845
+#: /usr/local/bin/replacer/sharedGUI.py:1867
+#: /usr/local/bin/replacer/sharedGUI.py:1883
+#: /usr/local/bin/replacer/sharedGUI.py:1899
+#: /usr/local/bin/replacer/sharedGUI.py:1915
+#: /usr/local/bin/replacer/sharedGUI.py:1931
+#: /usr/local/bin/replacer/sharedGUI.py:1981
+#: /usr/local/bin/replacer/sharedGUI.py:1994
+#: /usr/local/bin/replacer/sharedGUI.py:2003
+#: /usr/local/bin/replacer/sharedGUI.py:2012
+#: /usr/local/bin/replacer/sharedGUI.py:2021
+#: /usr/local/bin/replacer/sharedGUI.py:2034
+#: /usr/local/bin/replacer/sharedGUI.py:2060
+#: /usr/local/bin/replacer/sharedGUI.py:2090
+#: /usr/local/bin/replacer/sharedGUI.py:2123
+#: /usr/local/bin/replacer/sharedGUI.py:2139
+#: /usr/local/bin/replacer/sharedGUI.py:2155
+#: /usr/local/bin/replacer/sharedGUI.py:2167
+#: /usr/local/bin/replacer/sharedGUI.py:2583
+#: /usr/local/bin/replacer/sharedGUI.py:2594
+#: /usr/local/bin/replacer/sharedGUI.py:2605
+#: /usr/local/bin/replacer/sharedGUI.py:2616
+#: /usr/local/bin/replacer/shared.py:239
+#: /usr/local/bin/replacer/shared.py:249
+#: /usr/local/bin/replacer/shared.py:263
+#: /usr/local/bin/replacer/shared.py:337
+#: /usr/local/bin/replacer/shared.py:359
+#: /usr/local/bin/replacer/shared.py:465
+#: /usr/local/bin/replacer/shared.py:523
+#: /usr/local/bin/replacer/shared.py:543
+#: /usr/local/bin/replacer/shared.py:563
+#: /usr/local/bin/replacer/shared.py:611
+#: /usr/local/bin/replacer/shared.py:629
+#: /usr/local/bin/replacer/shared.py:639
+#: /usr/local/bin/replacer/shared.py:690
+#: /usr/local/bin/replacer/shared.py:701
+#: /usr/local/bin/replacer/shared.py:712
+#: /usr/local/bin/replacer/shared.py:722
+#: /usr/local/bin/replacer/shared.py:751
+#: /usr/local/bin/replacer/shared.py:1157
+#: /usr/local/bin/replacer/shared.py:1175
+#: /usr/local/bin/replacer/shared.py:1194
+#: /usr/local/bin/replacer/shared.py:1213
+#: /usr/local/bin/replacer/shared.py:1230
+#: /usr/local/bin/replacer/shared.py:1241
+#: /usr/local/bin/replacer/shared.py:1253
+#: /usr/local/bin/replacer/shared.py:1275
+#: /usr/local/bin/replacer/shared.py:1365
+#: /usr/local/bin/replacer/shared.py:1387
+#: /usr/local/bin/replacer/shared.py:1410
+#: /usr/local/bin/replacer/shared.py:1421
+#: /usr/local/bin/replacer/shared.py:1438
+#: /usr/local/bin/replacer/shared.py:1460
+#: /usr/local/bin/replacer/shared.py:1482
+#: /usr/local/bin/replacer/shared.py:1607
+#: /usr/local/bin/replacer/shared.py:1650
+#: /usr/local/bin/replacer/shared.py:1665
+#: /usr/local/bin/replacer/shared.py:1704
+#: /usr/local/bin/replacer/shared.py:1769
+#: /usr/local/bin/replacer/shared.py:1789
+#: /usr/local/bin/replacer/shared.py:1809
+#: /usr/local/bin/replacer/shared.py:1857
+#: /usr/local/bin/replacer/shared.py:1875
+#: /usr/local/bin/replacer/shared.py:1889
+#: /usr/local/bin/replacer/shared.py:1927
+#: /usr/local/bin/replacer/shared.py:1985
+#: /usr/local/bin/replacer/shared.py:1996
+#: /usr/local/bin/replacer/shared.py:2016
+#: /usr/local/bin/replacer/shared.py:2037
+#: /usr/local/bin/replacer/shared.py:2063
+#: /usr/local/bin/replacer/shared.py:2077
+#: /usr/local/bin/replacer/shared.py:2100
+#: /usr/local/bin/replacer/shared.py:2145
+#: /usr/local/bin/replacer/shared.py:2174
+#: /usr/local/bin/replacer/shared.py:2191
+#: /usr/local/bin/replacer/shared.py:2364
+#: /usr/local/bin/replacer/shared.py:2432
+#: /usr/local/bin/replacer/shared.py:2444
+#: /usr/local/bin/replacer/shared.py:2474
+#: /usr/local/bin/replacer/shared.py:2492
+#: /usr/local/bin/replacer/shared.py:2757
+#: /usr/local/bin/replacer/shared.py:2783
+#: /usr/local/bin/replacer/shared.py:2793
+#: /usr/local/bin/replacer/shared.py:2823
+#: /usr/local/bin/replacer/shared.py:2840
+#: /usr/local/bin/replacer/shared.py:2850
+#: /usr/local/bin/replacer/shared.py:2869
+#: /usr/local/bin/replacer/shared.py:2888
+#: /usr/local/bin/replacer/shared.py:2903
+#: /usr/local/bin/replacer/shared.py:2918
+#: /usr/local/bin/replacer/shared.py:2936
+#: /usr/local/bin/replacer/shared.py:2947
+#: /usr/local/bin/replacer/shared.py:2961
+#: /usr/local/bin/replacer/shared.py:2975
+#: /usr/local/bin/replacer/shared.py:2989
+#: /usr/local/bin/replacer/shared.py:3031
+#: /usr/local/bin/replacer/shared.py:3056
+#: /usr/local/bin/replacer/shared.py:3073
+#: /usr/local/bin/replacer/shared.py:3109
+#: /usr/local/bin/replacer/shared.py:3122
+#: /usr/local/bin/replacer/shared.py:3135
+#: /usr/local/bin/replacer/shared.py:3151
+#: /usr/local/bin/replacer/shared.py:3168
+#: /usr/local/bin/replacer/shared.py:3229
+#: /usr/local/bin/replacer/shared.py:3242
+#: /usr/local/bin/replacer/shared.py:3255
+#: /usr/local/bin/replacer/shared.py:3266
+#: /usr/local/bin/replacer/shared.py:3277
+#: /usr/local/bin/replacer/shared.py:3293
+#: /usr/local/bin/replacer/shared.py:3309
+#: /usr/local/bin/replacer/shared.py:3323
+#: /usr/local/bin/replacer/shared.py:3337
+#: /usr/local/bin/replacer/shared.py:3349
+#: /usr/local/bin/replacer/shared.py:3641
+#: /usr/local/bin/replacer/shared.py:3654
+msgid "Operation has been canceled."
+msgstr "Операция отменена."
+
+#: /usr/local/bin/replacer/sharedGUI.py:25
+#: /usr/local/bin/replacer/sharedGUI.py:30
+#: /usr/local/bin/replacer/sharedGUI.py:35
+#: /usr/local/bin/replacer/sharedGUI.py:83
+#: /usr/local/bin/replacer/sharedGUI.py:88
+#: /usr/local/bin/replacer/sharedGUI.py:102
+#: /usr/local/bin/replacer/sharedGUI.py:116
+#: /usr/local/bin/replacer/sharedGUI.py:125
+#: /usr/local/bin/replacer/sharedGUI.py:138
+#: /usr/local/bin/replacer/sharedGUI.py:148
+#: /usr/local/bin/replacer/sharedGUI.py:153
+#: /usr/local/bin/replacer/sharedGUI.py:319
+#: /usr/local/bin/replacer/sharedGUI.py:686
+#: /usr/local/bin/replacer/sharedGUI.py:697
+#: /usr/local/bin/replacer/sharedGUI.py:705
+#: /usr/local/bin/replacer/sharedGUI.py:713
+#: /usr/local/bin/replacer/sharedGUI.py:727
+#: /usr/local/bin/replacer/sharedGUI.py:741
+#: /usr/local/bin/replacer/sharedGUI.py:748
+#: /usr/local/bin/replacer/sharedGUI.py:801
+#: /usr/local/bin/replacer/sharedGUI.py:1225
+#: /usr/local/bin/replacer/sharedGUI.py:1422
+#: /usr/local/bin/replacer/sharedGUI.py:1439
+#: /usr/local/bin/replacer/sharedGUI.py:1534
+#: /usr/local/bin/replacer/sharedGUI.py:1594
+#: /usr/local/bin/replacer/sharedGUI.py:1605
+#: /usr/local/bin/replacer/sharedGUI.py:1640
+#: /usr/local/bin/replacer/sharedGUI.py:1750
+#: /usr/local/bin/replacer/sharedGUI.py:2054
+#: /usr/local/bin/replacer/sharedGUI.py:2231
+#: /usr/local/bin/replacer/sharedGUI.py:2250
+#: /usr/local/bin/replacer/sharedGUI.py:2262
+#: /usr/local/bin/replacer/sharedGUI.py:2267
+#: /usr/local/bin/replacer/sharedGUI.py:2274
+#: /usr/local/bin/replacer/sharedGUI.py:2288
+#: /usr/local/bin/replacer/sharedGUI.py:2300
+#: /usr/local/bin/replacer/sharedGUI.py:2311
+#: /usr/local/bin/replacer/sharedGUI.py:2320
+#: /usr/local/bin/replacer/sharedGUI.py:2331
+#: /usr/local/bin/replacer/sharedGUI.py:2356
+#: /usr/local/bin/replacer/sharedGUI.py:2361
+#: /usr/local/bin/replacer/sharedGUI.py:2402
+#: /usr/local/bin/replacer/sharedGUI.py:2481
+#: /usr/local/bin/replacer/sharedGUI.py:2557
+#: /usr/local/bin/replacer/sharedGUI.py:2564
+#: /usr/local/bin/replacer/sharedGUI.py:2570
+#: /usr/local/bin/replacer/sharedGUI.py:2572
+#: /usr/local/bin/replacer/sharedGUI.py:2579
+#: /usr/local/bin/replacer/sharedGUI.py:2582
+#: /usr/local/bin/replacer/sharedGUI.py:2658
+#: /usr/local/bin/replacer/sharedGUI.py:2662
+#: /usr/local/bin/replacer/sharedGUI.py:2663
+#: /usr/local/bin/replacer/sharedGUI.py:2755
+#: /usr/local/bin/replacer/sharedGUI.py:2777
+#: /usr/local/bin/replacer/sharedGUI.py:2789
+#: /usr/local/bin/replacer/sharedGUI.py:2805
+#: /usr/local/bin/replacer/sharedGUI.py:2817
+#: /usr/local/bin/replacer/sharedGUI.py:2862
+#: /usr/local/bin/replacer/sharedGUI.py:2893
+#: /usr/local/bin/replacer/shared.py:174
+#: /usr/local/bin/replacer/shared.py:179
+#: /usr/local/bin/replacer/shared.py:188
+#: /usr/local/bin/replacer/shared.py:198
+#: /usr/local/bin/replacer/shared.py:208
+#: /usr/local/bin/replacer/shared.py:280
+#: /usr/local/bin/replacer/shared.py:302
+#: /usr/local/bin/replacer/shared.py:311
+#: /usr/local/bin/replacer/shared.py:327
+#: /usr/local/bin/replacer/shared.py:349
+#: /usr/local/bin/replacer/shared.py:398
+#: /usr/local/bin/replacer/shared.py:407
+#: /usr/local/bin/replacer/shared.py:536
+#: /usr/local/bin/replacer/shared.py:556
+#: /usr/local/bin/replacer/shared.py:657
+#: /usr/local/bin/replacer/shared.py:671
+#: /usr/local/bin/replacer/shared.py:743
+#: /usr/local/bin/replacer/shared.py:776
+#: /usr/local/bin/replacer/shared.py:1299
+#: /usr/local/bin/replacer/shared.py:1328
+#: /usr/local/bin/replacer/shared.py:1345
+#: /usr/local/bin/replacer/shared.py:1373
+#: /usr/local/bin/replacer/shared.py:1446
+#: /usr/local/bin/replacer/shared.py:1527
+#: /usr/local/bin/replacer/shared.py:1533
+#: /usr/local/bin/replacer/shared.py:1625
+#: /usr/local/bin/replacer/shared.py:1631
+#: /usr/local/bin/replacer/shared.py:1643
+#: /usr/local/bin/replacer/shared.py:1782
+#: /usr/local/bin/replacer/shared.py:1802
+#: /usr/local/bin/replacer/shared.py:1915
+#: /usr/local/bin/replacer/shared.py:2085
+#: /usr/local/bin/replacer/shared.py:2113
+#: /usr/local/bin/replacer/shared.py:2229
+#: /usr/local/bin/replacer/shared.py:2376
+#: /usr/local/bin/replacer/shared.py:2411
+#: /usr/local/bin/replacer/shared.py:2486
+msgid "ERROR"
+msgstr "ОШИБКА"
+
+#: /usr/local/bin/replacer/sharedGUI.py:26
+#, python-format
+msgid "Failed to enable key combination \"%s\"!"
+msgstr "Не удалось задействовать сочетание клавиш \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:31
+#: /usr/local/bin/replacer/sharedGUI.py:1606
+#: /usr/local/bin/replacer/sharedGUI.py:1641
+#: /usr/local/bin/replacer/shared.py:1971
+#: /usr/local/bin/replacer/shared.py:3021
+#: /usr/local/bin/replacer/shared.py:3026
+#, python-format
+msgid "Wrong input data: \"%s\""
+msgstr "Недопустимые входные данные: \"%s\""
+
+#: /usr/local/bin/replacer/sharedGUI.py:36
+#: /usr/local/bin/replacer/sharedGUI.py:320
+#: /usr/local/bin/replacer/sharedGUI.py:2055
+#: /usr/local/bin/replacer/sharedGUI.py:2232
+#: /usr/local/bin/replacer/sharedGUI.py:2251
+#: /usr/local/bin/replacer/sharedGUI.py:2268
+#: /usr/local/bin/replacer/sharedGUI.py:2275
+#: /usr/local/bin/replacer/sharedGUI.py:2289
+#: /usr/local/bin/replacer/sharedGUI.py:2301
+#: /usr/local/bin/replacer/sharedGUI.py:2312
+#: /usr/local/bin/replacer/sharedGUI.py:2321
+#: /usr/local/bin/replacer/sharedGUI.py:2332
+#: /usr/local/bin/replacer/sharedGUI.py:2403
+#: /usr/local/bin/replacer/shared.py:479
+#: /usr/local/bin/replacer/shared.py:672
+#: /usr/local/bin/replacer/shared.py:1718
+#: /usr/local/bin/replacer/shared.py:2321
+#: /usr/local/bin/replacer/shared.py:2392
+#: /usr/local/bin/replacer/shared.py:3098
+#: /usr/local/bin/replacer/shared.py:3193
+msgid "Wrong input data!"
+msgstr "Недопустимые входные данные!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:80
+#: /usr/local/bin/replacer/sharedGUI.py:84
+msgid "Failed to insert the text!"
+msgstr "Не удалось вставить текст!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:89
+#: /usr/local/bin/replacer/sharedGUI.py:103
+#: /usr/local/bin/replacer/sharedGUI.py:117
+#: /usr/local/bin/replacer/sharedGUI.py:126
+#: /usr/local/bin/replacer/sharedGUI.py:139
+#: /usr/local/bin/replacer/sharedGUI.py:154
+#, python-format
+msgid "A logic error: unknown object type: \"%s\"!"
+msgstr "Логическая ошибка: неизвестный тип объекта: \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:120
+msgid "Text:"
+msgstr "Текст:"
+
+#: /usr/local/bin/replacer/sharedGUI.py:135
+msgid "Save and close"
+msgstr "Запомнить и выйти"
+
+#: /usr/local/bin/replacer/sharedGUI.py:149
+#: /usr/local/bin/replacer/shared.py:665
+#: /usr/local/bin/replacer/shared.py:1307
+#, python-format
+msgid "File \"%s\" has not been found!"
+msgstr "Файл \"%s\" не найден!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:222
+msgid "Find:"
+msgstr "Найти:"
+
+#: /usr/local/bin/replacer/sharedGUI.py:243
+#: /usr/local/bin/replacer/sharedGUI.py:895
+#: /usr/local/bin/replacer/sharedGUI.py:2362
+#: /usr/local/bin/replacer/sharedGUI.py:2558
+#: /usr/local/bin/replacer/shared.py:180
+#: /usr/local/bin/replacer/shared.py:281
+#: /usr/local/bin/replacer/shared.py:328
+#: /usr/local/bin/replacer/shared.py:350
+#: /usr/local/bin/replacer/shared.py:658
+#: /usr/local/bin/replacer/shared.py:1534
+#: /usr/local/bin/replacer/shared.py:2698
+#: /usr/local/bin/replacer/shared.py:2717
+msgid "Not enough input data!"
+msgstr "Недостаточно входных данных!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:258
+#: /usr/local/bin/replacer/sharedGUI.py:373
+#: /usr/local/bin/replacer/sharedGUI.py:403
+msgid "No matches!"
+msgstr "Совпадений нет!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:361
+#: /usr/local/bin/replacer/sharedGUI.py:391
+msgid "Only one match has been found!"
+msgstr "Найдено 1 совпадение!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:366
+msgid "No more matches, continuing from the top!"
+msgstr "Совпадений больше нет, поиск продолжен с начала!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:396
+msgid "No more matches, continuing from the bottom!"
+msgstr "Совпадений больше нет, поиск продолжен с конца!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:623
+#: /usr/local/bin/replacer/sharedGUI.py:759
+#: /usr/local/bin/replacer/sharedGUI.py:973
+#: /usr/local/bin/replacer/sharedGUI.py:999
+#: /usr/local/bin/replacer/sharedGUI.py:2785
+#: /usr/local/bin/replacer/sharedGUI.py:2813
+msgid "The parent has already been destroyed."
+msgstr "Родительский виджет уже был разрушен."
+
+#: /usr/local/bin/replacer/sharedGUI.py:663
+#, python-format
+msgid "Failed to remove the tag %s in the widget %s in positions %s-%s!"
+msgstr "Не удалось удалить тэг %s в виджете %s для позиций %s-%s!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:674
+msgid "DEBUG-ERROR"
+msgstr "ОШИБКА ПРИ ОТЛАДКЕ"
+
+#: /usr/local/bin/replacer/sharedGUI.py:675
+#: /usr/local/bin/replacer/sharedGUI.py:749
+#, python-format
+msgid "Element \"%s\" has not been found in fragment \"%s\"!"
+msgstr "Элемент \"%s\" не был найден во фрагменте \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:687
+#, python-format
+msgid "Failed to add tag \"%s\" for positions %s-%s!"
+msgstr "Не удалось добавить тэг \"%s\" для позиций %s-%s!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:698
+#, python-format
+msgid "Failed to configure tag \"%s\" to have the background of color \"%s\"!"
+msgstr "Не удалось назначить тэгу \"%s\" фон \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:706
+#, python-format
+msgid "Failed to configure tag \"%s\" to have the foreground of color \"%s\"!"
+msgstr "Не удалось назначить тэгу \"%s\" цвет \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:714
+#, python-format
+msgid "Failed to configure tag \"%s\" to have the font \"%s\"!"
+msgstr "Не удалось назначить тэгу \"%s\" шрифт \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:722
+#: /usr/local/bin/replacer/sharedGUI.py:736
+#: /usr/local/bin/replacer/sharedGUI.py:844
+#: /usr/local/bin/replacer/sharedGUI.py:883
+#: /usr/local/bin/replacer/sharedGUI.py:1741
+#: /usr/local/bin/replacer/sharedGUI.py:2792
+#: /usr/local/bin/replacer/sharedGUI.py:2821
+#: /usr/local/bin/replacer/shared.py:2237
+#: /usr/local/bin/replacer/shared.py:2647
+#: /usr/local/bin/replacer/shared.py:2707
+#: /usr/local/bin/replacer/shared.py:2726
+#: /usr/local/bin/replacer/shared.py:3014
+#: /usr/local/bin/replacer/shared.py:3207
+#: /usr/local/bin/replacer/shared.py:3208
+#: /usr/local/bin/replacer/shared.py:3449
+#: /usr/local/bin/replacer/shared.py:3463
+msgid "DEBUG"
+msgstr "ОТЛАДКА"
+
+#: /usr/local/bin/replacer/sharedGUI.py:723
+#, python-format
+msgid "Mark \"%s\" has been inserted in position \"%s\"."
+msgstr "Метка \"%s\" вставлена в позиции \"%s\"."
+
+#: /usr/local/bin/replacer/sharedGUI.py:728
+#, python-format
+msgid "Failed to insert mark \"%s\" in position \"%s\"!"
+msgstr "Не удается вставить метку \"%s\" для позиции \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:737
+#, python-format
+msgid "Mark \"%s\" has been removed."
+msgstr "Метка \"%s\" была удалена."
+
+#: /usr/local/bin/replacer/sharedGUI.py:742
+#, python-format
+msgid "Failed to remove mark \"%s\"!"
+msgstr "Не удалось удалить метку \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:802
+#: /usr/local/bin/replacer/sharedGUI.py:812
+#, python-format
+msgid "Failed to shift screen to label \"%s\"!"
+msgstr "Не удалось сдвинуть экран до метки \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:830
+#: /usr/local/bin/replacer/sharedGUI.py:2713
+msgid "Title:"
+msgstr "Заголовок:"
+
+#: /usr/local/bin/replacer/sharedGUI.py:845
+#, python-format
+msgid "Got position: \"%s\""
+msgstr "Получена позиция: \"%s\""
+
+#: /usr/local/bin/replacer/sharedGUI.py:851
+msgid "Cannot return a cursor position!"
+msgstr "Не удалось вернуть позицию курсора!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:884
+#, python-format
+msgid "%d tags to assign"
+msgstr "Создание %d тэгов"
+
+#: /usr/local/bin/replacer/sharedGUI.py:890
+msgid "Spelling seems to be correct."
+msgstr "Ошибок правописания не обнаружено."
+
+#: /usr/local/bin/replacer/sharedGUI.py:1226
+#: /usr/local/bin/replacer/sharedGUI.py:1595
+#: /usr/local/bin/replacer/sharedGUI.py:2571
+#: /usr/local/bin/replacer/sharedGUI.py:2663
+#: /usr/local/bin/replacer/shared.py:312
+#: /usr/local/bin/replacer/shared.py:1632
+#, python-format
+msgid ""
+"An unknown mode \"%s\"!\n"
+"\n"
+"The following modes are supported: \"%s\"."
+msgstr ""
+"Неизвестный режим \"%s\"!\n"
+"\n"
+"Поддерживаются следующие режимы: \"%s\"."
+
+#: /usr/local/bin/replacer/sharedGUI.py:1233
+#, python-format
+msgid "Changing \"%s\" widget geometry to \"%dx%d+%d+%d\""
+msgstr "Изменение геометрии виджета \"%s\" на \"%dx%d+%d+%d\""
+
+#: /usr/local/bin/replacer/sharedGUI.py:1440
+#, python-format
+msgid "Item \"%s\" is not in list!"
+msgstr "Элемент \"%s\" не в списке!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:1521
+msgid "Plain text (UTF-8)"
+msgstr "Обычный текст (UTF-8)"
+
+#: /usr/local/bin/replacer/sharedGUI.py:1522
+#: /usr/local/bin/replacer/sharedGUI.py:1523
+msgid "Web-page"
+msgstr "Веб-страница"
+
+#: /usr/local/bin/replacer/sharedGUI.py:1524
+msgid "All files"
+msgstr "Все файлы"
+
+#: /usr/local/bin/replacer/sharedGUI.py:1529
+msgid "Save As:"
+msgstr "Сохранить как:"
+
+#: /usr/local/bin/replacer/sharedGUI.py:1535
+msgid "Failed to select a file!"
+msgstr "Не удалось выбрать файл!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:1739
+#, python-format
+msgid "Nothing is selected in window %d, therefore, it is not possible to return coordinates!"
+msgstr "В окне %d нет выделения, поэтому координаты вернуть нельзя!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:1751
+msgid "Failed to return selection in the Tkinter widget!"
+msgstr "Не удается вернуть диапазон выделения в виджете Tkinter!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2180
+msgid "Paste a special symbol"
+msgstr "Вставить специальный символ"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2227
+#, python-format
+msgid "Saved geometry: %s"
+msgstr "Сохранена геометрия: %s"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2240
+#, python-format
+msgid "Restoring geometry: %s"
+msgstr "Восстановление геометрии: %s"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2246
+msgid "Failed to restore geometry!"
+msgstr "Не удалось восстановить геометрию!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2263
+msgid "Failed to change window properties!"
+msgstr "Не удалось изменить свойства окна!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2357
+msgid "Failed to get the window handle!"
+msgstr "Не удалось получить дескриптор окна!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2381
+#: /usr/local/bin/replacer/sharedGUI.py:2426
+#: /usr/local/bin/replacer/sharedGUI.py:2428
+msgid "Please wait..."
+msgstr "Подождите..."
+
+#: /usr/local/bin/replacer/sharedGUI.py:2482
+#, python-format
+msgid "Wrong font: \"%s\"!"
+msgstr "Неправильный шрифт: \"%s\"!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2564
+msgid "CRITICAL"
+msgstr "КРИТИЧЕСКАЯ ОШИБКА"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2566
+#: /usr/local/bin/replacer/sharedGUI.py:2572
+#: /usr/local/bin/replacer/sharedGUI.py:2601
+#: /usr/local/bin/replacer/sharedGUI.py:2604
+#: /usr/local/bin/replacer/sharedGUI.py:2656
+#: /usr/local/bin/replacer/sharedGUI.py:2663
+#: /usr/local/bin/replacer/sharedGUI.py:2682
+#: /usr/local/bin/replacer/sharedGUI.py:2688
+#: /usr/local/bin/replacer/sharedGUI.py:2870
+#: /usr/local/bin/replacer/shared.py:141
+msgid "QUESTION"
+msgstr "ВОПРОС"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2691
+#: /usr/local/bin/replacer/sharedGUI.py:2705
+msgid "Accept and close"
+msgstr "Принять и закрыть"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2699
+msgid "Reject and close"
+msgstr "Отказаться и закрыть"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2756
+#, python-format
+msgid "Picture \"%s\" was not found!"
+msgstr "Изображение \"%s\" не найдено!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2778
+msgid "A clipboard error has occurred!"
+msgstr "Ошибка буфера обмена!"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2790
+#: /usr/local/bin/replacer/sharedGUI.py:2818
+msgid "An unknown error has occurred."
+msgstr "Произошла неизвестная ошибка."
+
+#: /usr/local/bin/replacer/sharedGUI.py:2806
+msgid "Failed to paste the clipboard contents!"
+msgstr "Ошибка вставки из буфера обмена."
+
+#: /usr/local/bin/replacer/sharedGUI.py:2848
+#, python-format
+msgid "Add %s"
+msgstr "Добавить %s"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2886
+#, python-format
+msgid "Close %d objs"
+msgstr "Закрыть %d объектов"
+
+#: /usr/local/bin/replacer/sharedGUI.py:2894
+#, python-format
+msgid "Widget \"%s\" does not have a \"close\" action!"
+msgstr "У виджета \"%s\" нет действия \"close\"!"
+
+#: /usr/local/bin/replacer/shared.py:142
+#, python-format
+msgid "ATTENTION: Do yo really want to rewrite file \"%s\"?"
+msgstr "ВНИМАНИЕ: Перезаписать файл \"%s\"?"
+
+#: /usr/local/bin/replacer/shared.py:175
+#, python-format
+msgid "Failed to run \"%s\"!"
+msgstr "Не удалось запустить \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:189
+#: /usr/local/bin/replacer/shared.py:199
+#: /usr/local/bin/replacer/shared.py:209
+msgid "Unable to open the file in an external program. You should probably check the file associations."
+msgstr "Не удается открыть файл во внешней программе. Возможно, Вам стоит проверить ассоциации файлов."
+
+#: /usr/local/bin/replacer/shared.py:293
+#: /usr/local/bin/replacer/shared.py:1613
+#, python-format
+msgid "Write file \"%s\""
+msgstr "Запись файла \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:303
+#: /usr/local/bin/replacer/shared.py:1626
+#, python-format
+msgid "Unable to write file \"%s\"!"
+msgstr "Не удается записать файл \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:390
+msgid "***** Start of log. *****"
+msgstr "***** Начало записи лога. *****"
+
+#: /usr/local/bin/replacer/shared.py:451
+#: /usr/local/bin/replacer/shared.py:1690
+#, python-format
+msgid "Entries deleted: %d (%d-%d)"
+msgstr "Удалено вхождений: %d (%d-%d)"
+
+#: /usr/local/bin/replacer/shared.py:459
+#: /usr/local/bin/replacer/shared.py:605
+#: /usr/local/bin/replacer/shared.py:1698
+#: /usr/local/bin/replacer/shared.py:1851
+#, python-format
+msgid "File \"%s\" is not sortable!"
+msgstr "Файл \"%s\" не подлежит сортировке!"
+
+#: /usr/local/bin/replacer/shared.py:500
+#, python-format
+msgid "Dictionary \"%s\": Incorrect line #%d: \"%s\"!"
+msgstr "Словарь \"%s\": Неправильная строка №%d: \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:730
+#: /usr/local/bin/replacer/shared.py:1906
+#, python-format
+msgid "Load file \"%s\""
+msgstr "Загрузка файла \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:744
+#: /usr/local/bin/replacer/shared.py:1916
+#, python-format
+msgid "Unable to read file \"%s\"!"
+msgstr "Не удается прочитать файл \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:772
+#, python-format
+msgid "Convert \"%s\" to an integer"
+msgstr "Конвертация \"%s\" в целое число"
+
+#: /usr/local/bin/replacer/shared.py:777
+#, python-format
+msgid "Integer is required at input, but found \"%s\"! Return 0"
+msgstr "На входе должно быть целое число, но получено \"%s\"! Возвращаю 0"
+
+#: /usr/local/bin/replacer/shared.py:929
+msgid "Empty strings are not supported!"
+msgstr "Поддерживаются только непустые строки!"
+
+#: /usr/local/bin/replacer/shared.py:995
+msgid "Commas and/or semicolons or line breaks can be used, but not altogether!"
+msgstr "Можно использовать запятые и/или точки с запятой или переносы строк, но не все сразу!"
+
+#: /usr/local/bin/replacer/shared.py:1020
+#, python-format
+msgid "Failed to convert \"%s\" to an integer!"
+msgstr "Не удалось конвертировать \"%s\" в целое число!"
+
+#: /usr/local/bin/replacer/shared.py:1031
+#, python-format
+msgid "Failed to convert \"%s\" to a floating-point number!"
+msgstr "Не удалось конвертировать \"%s\" в число с плавающей точкой!"
+
+#: /usr/local/bin/replacer/shared.py:1151
+#: /usr/local/bin/replacer/shared.py:1170
+#: /usr/local/bin/replacer/shared.py:1189
+#: /usr/local/bin/replacer/shared.py:1208
+#: /usr/local/bin/replacer/shared.py:1270
+msgid "Set time parameters are incorrect or not supported."
+msgstr "Заданные параметры времени неверны или не поддерживаются."
+
+#: /usr/local/bin/replacer/shared.py:1224
+msgid "Note: it will be Monday!"
+msgstr "Обратите внимание: указанная дата - понедельник!"
+
+#: /usr/local/bin/replacer/shared.py:1314
+#, python-format
+msgid "The object \"%s\" is not a file!"
+msgstr "Объект \"%s\" не является файлом!"
+
+#: /usr/local/bin/replacer/shared.py:1321
+#: /usr/local/bin/replacer/shared.py:2106
+#, python-format
+msgid "Copy \"%s\" to \"%s\""
+msgstr "Копирование \"%s\" в \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:1329
+#, python-format
+msgid "Failed to copy file \"%s\" to \"%s\"!"
+msgstr "Не удалось скопировать файл \"%s\" в \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:1338
+#, python-format
+msgid "Move \"%s\" to \"%s\""
+msgstr "Перемещение \"%s\" в \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:1346
+#, python-format
+msgid "Failed to move \"%s\" to \"%s\"!"
+msgstr "Не удалось переместить \"%s\" в \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:1359
+#: /usr/local/bin/replacer/shared.py:1432
+#, python-format
+msgid "Failed to get the date of the file \"%s\"!"
+msgstr "Не удалось определить дату файла \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:1374
+#, python-format
+msgid "Unable to copy the file \"%s\" to iself!"
+msgstr "Нельзя скопировать файл \"%s\" сам в себя!"
+
+#: /usr/local/bin/replacer/shared.py:1382
+#: /usr/local/bin/replacer/shared.py:1455
+#: /usr/local/bin/replacer/shared.py:1660
+msgid "Operation has been canceled by the user."
+msgstr "Операция отменена пользователем."
+
+#: /usr/local/bin/replacer/shared.py:1396
+#: /usr/local/bin/replacer/shared.py:2004
+#, python-format
+msgid "Delete \"%s\""
+msgstr "Удаление \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:1404
+#, python-format
+msgid "Failed to delete file \"%s\"!"
+msgstr "Не удается удалить файл \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:1447
+msgid "Moving is not necessary, because the source and destination are identical."
+msgstr "Перемещение не требуется, поскольку на входе и выходе указан один и тот же объект."
+
+#: /usr/local/bin/replacer/shared.py:1469
+#, python-format
+msgid "Change the time of the file \"%s\" to %s"
+msgstr "Изменение времени файла \"%s\" на %s"
+
+#: /usr/local/bin/replacer/shared.py:1476
+#, python-format
+msgid "Failed to change the time of the file \"%s\" to \"%s\"!"
+msgstr "Не удалось изменить время файла \"%s\" на \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:1509
+#: /usr/local/bin/replacer/shared.py:2092
+#, python-format
+msgid "Directory \"%s\" already exists."
+msgstr "Каталог \"%s\" уже существует."
+
+#: /usr/local/bin/replacer/shared.py:1515
+#, python-format
+msgid "The path \"%s\" is invalid!"
+msgstr "Путь \"%s\" неверен!"
+
+#: /usr/local/bin/replacer/shared.py:1520
+#, python-format
+msgid "Create directory \"%s\""
+msgstr "Создание каталога \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:1528
+#, python-format
+msgid "Failed to create directory \"%s\"!"
+msgstr "Не удается создать каталог \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:1749
+msgid "The following lines cannot be parsed:"
+msgstr "Не удается обработать следующие строки:"
+
+#: /usr/local/bin/replacer/shared.py:2011
+#, python-format
+msgid "Failed to delete directory \"%s\"! Delete it manually."
+msgstr "Не удается удалить каталог \"%s\"! Удалите его вручную."
+
+#: /usr/local/bin/replacer/shared.py:2086
+#, python-format
+msgid "Unable to copy \"%s\" to iself!"
+msgstr "Нельзя скопировать \"%s\" сам в себя!"
+
+#: /usr/local/bin/replacer/shared.py:2114
+#, python-format
+msgid "Failed to copy \"%s\" to \"%s\"!"
+msgstr "Не удалось скопировать \"%s\" в \"%s\"!"
+
+#: /usr/local/bin/replacer/shared.py:2134
+#, python-format
+msgid "New value of the key \"%s\" has been loaded."
+msgstr "Загружено новое значение ключа \"%s\"."
+
+#: /usr/local/bin/replacer/shared.py:2140
+#, python-format
+msgid "Keys loaded in total: %d, whereas %d are modified."
+msgstr "Всего загружено ключей: %d, из них измененных: %d"
+
+#: /usr/local/bin/replacer/shared.py:2163
+#, python-format
+msgid "Missing sections: %d"
+msgstr "Отсутствующих разделов: %d"
+
+#: /usr/local/bin/replacer/shared.py:2164
+#, python-format
+msgid "Missing keys: %d"
+msgstr "Отсутствующих ключей: %d"
+
+#: /usr/local/bin/replacer/shared.py:2165
+msgid "The default configuration has been loaded."
+msgstr "Загружена конфигурация по умолчанию."
+
+#: /usr/local/bin/replacer/shared.py:2185
+#, python-format
+msgid "Failed to read the configuration file \"%s\". This file must share the same directory with the program and have UTF-8 encoding (no BOM) and UNIX line break type."
+msgstr "Не удается прочитать конфигурационный файл \"%s\". Этот файл должен находиться в одном каталоге с программой и иметь кодировку utf-8 (без BOM), тип разрыва строки - UNIX."
+
+#: /usr/local/bin/replacer/shared.py:2230
+#, python-format
+msgid "Failed to open URL \"%s\" in a default browser!"
+msgstr "Не удалось открыть адрес \"%s\" в браузере по умолчанию!"
+
+#: /usr/local/bin/replacer/shared.py:2271
+msgid "Differences:"
+msgstr "Различия:"
+
+#: /usr/local/bin/replacer/shared.py:2293
+msgid "Texts are identical!"
+msgstr "Различий нет!"
+
+#: /usr/local/bin/replacer/shared.py:2347
+#, python-format
+msgid "Delete the symbolic link \"%s\""
+msgstr "Удаление ярлыка \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:2354
+#, python-format
+msgid "Failed to remove shortcut \"%s\". Remove it manually and press OK."
+msgstr "Не удается удалить ярлык \"%s\". Удалите его вручную и нажмите OK."
+
+#: /usr/local/bin/replacer/shared.py:2370
+#: /usr/local/bin/replacer/shared.py:2401
+#, python-format
+msgid "Create a symbolic link \"%s\""
+msgstr "Создание ярлыка \"%s\""
+
+#: /usr/local/bin/replacer/shared.py:2377
+#: /usr/local/bin/replacer/shared.py:2412
+#, python-format
+msgid "Failed to create shortcut \"%s\". Create it manually and press OK."
+msgstr "Не удается создать ярлык \"%s\". Создайте его вручную и нажмите OK."
+
+#: /usr/local/bin/replacer/shared.py:2386
+#: /usr/local/bin/replacer/shared.py:2425
+#: /usr/local/bin/replacer/shared.py:3218
+msgid "Nothing to do."
+msgstr "Действие не требуется."
+
+#: /usr/local/bin/replacer/shared.py:2487
+msgid "Failed to load an e-mail client."
+msgstr "Не удалось загрузить почтовый клиент."
+
+#: /usr/local/bin/replacer/shared.py:2741
+msgid "Analyze the text"
+msgstr "Анализ текста"
+
+#: /usr/local/bin/replacer/shared.py:3051
+#, python-format
+msgid "Failed to find words of paragraph #%d!"
+msgstr "Не удалось найти слова абзаца #%d!"
+
+#: /usr/local/bin/replacer/shared.py:3224
+msgid "Perform actions"
+msgstr "Выполнение операций"
+
+#: /usr/local/bin/replacer/shared.py:3534
+#: /usr/local/bin/replacer/shared.py:3543
+msgid "The pool is empty!"
+msgstr "Пул пуст!"
+
+#: /usr/local/bin/replacer/shared.py:3578
+#, python-format
+msgid "The operation has taken %f s."
+msgstr "Операция завершена за %f с."
+
+#: /usr/local/bin/replacer/shared.py:3615
+#, python-format
+msgid "Set the max number of rows to %d"
+msgstr "Задать максимальное число столбцов: %d"
+
