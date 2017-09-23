@@ -6,3 +6,10 @@ get	получить
 dog	собака
 cobra	кобра
 met	встретила
+banana	банан
+bat	летучая мышь
+cute	милая
+next	следующий
+strong	сильный
+dog and cat	собака и кошка
+weak and strong	слабый и сильный

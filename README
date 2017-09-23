@@ -1,0 +1,3 @@
+This is a simple batch-replace program. It can load a "dictionary" which is a tab-delimited file ('dic.txt'), read input from 'in.txt' and writes text with replacements to 'out.txt'. These text files are located in the program's directory and are can be rewritten.
+
+This program also can watch clipboard contents and modify it on-the-fly according to the 'dictionary'.

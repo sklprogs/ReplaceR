@@ -16,16 +16,38 @@ globs   = {'dic':'dic.txt','file':'in.txt','file_w':'out.txt'}
 class Commands:
     
     def open_dic(self,*args):
-        sh.Launch(target=globs['dic']).default()
-        sg.Message (func    = 'Commands.open_dic'
-                   ,level   = _('INFO')
-                   ,message = _('Press OK to reload the dictionary now.')
-                   )
-        objs.reset()
-        objs.dic()
+        text = sh.ReadTextFile(file=globs['dic']).get()
+        objs.txt().reset_data()
+        objs._txt.insert(text=text)
+        objs._txt.show()
+        text = objs._txt.get()
+        if text:
+            sh.WriteTextFile (file       = globs['dic']
+                             ,AskRewrite = False
+                             ).write(text=text)
+            objs.reset()
+            objs.dic()
+        else:
+            sh.log.append ('Commands.open_dic'
+                          ,_('WARNING')
+                          ,_('Empty input is not allowed!')
+                          )
         
     def open_input(self,*args):
-        sh.Launch(target=globs['file']).default()
+        text = sh.ReadTextFile(file=globs['file']).get()
+        objs.txt().reset_data()
+        objs._txt.insert(text=text)
+        objs._txt.show()
+        text = objs._txt.get()
+        if text:
+            sh.WriteTextFile (file       = globs['file']
+                             ,AskRewrite = False
+                             ).write(text=text)
+        else:
+            sh.log.append ('Commands.open_input'
+                          ,_('WARNING')
+                          ,_('Empty input is not allowed!')
+                          )
         
     def apply2file(self,*args):
         text = sh.ReadTextFile(file=globs['file']).get()
@@ -34,7 +56,9 @@ class Commands:
             sh.WriteTextFile (file       = globs['file_w']
                              ,AskRewrite = False
                              ).write(text)
-            sh.Launch(target=globs['file_w']).default()
+            objs.txt_ro().reset_data()
+            objs._txt_ro.insert(text=text)
+            objs._txt_ro.show()
         else:
             sh.log.append ('Commands.apply2file'
                           ,_('WARNING')
@@ -138,11 +162,33 @@ class Menu:
 class Objects:
     
     def __init__(self):
-        self._menu = None
+        self._menu = self._txt = self._txt_ro = None
         self.reset()
         
     def reset(self):
         self._dic = self._apply = self._watch = None
+    
+    def txt_ro(self):
+        if not self._txt_ro:
+            top = sg.objs.new_top(Maximize=0)
+            sg.Geometry(parent_obj=top).set('800x600')
+            self._txt_ro = sg.TextBox (parent_obj    = top
+                                      ,SpecialReturn = False
+                                      ,state         = 'disabled'
+                                      )
+            self._txt_ro.state = 'normal'
+            self._txt_ro.title(_('Check text:'))
+        return self._txt_ro
+    
+    def txt(self):
+        if not self._txt:
+            top = sg.objs.new_top(Maximize=0)
+            sg.Geometry(parent_obj=top).set('800x600')
+            self._txt = sg.TextBox (parent_obj    = top
+                                   ,SpecialReturn = False
+                                   )
+            self._txt.title(_('Edit text:'))
+        return self._txt
     
     def watch(self):
         if not self._watch:
