@@ -84,35 +84,35 @@ class Menu:
         self.bindings()
         
     def buttons(self):
-        button = sg.Button (parent_obj = self.obj
-                           ,action     = Commands().open_dic
-                           ,text       = _('Modify the dictionary')
-                           ,side       = 'top'
+        button = sg.Button (parent = self.obj
+                           ,action = Commands().open_dic
+                           ,text   = _('Modify the dictionary')
+                           ,side   = 'top'
                            )
         button.focus()
                  
-        sg.Button (parent_obj = self.obj
-                  ,action     = Commands().open_input
-                  ,text       = _('Modify the input file')
-                  ,side       = 'top'
+        sg.Button (parent = self.obj
+                  ,action = Commands().open_input
+                  ,text   = _('Modify the input file')
+                  ,side   = 'top'
                   )
         
-        sg.Button (parent_obj = self.obj
-                  ,action     = Commands().apply2file
-                  ,text       = _('Write the output file')
-                  ,side       = 'top'
+        sg.Button (parent = self.obj
+                  ,action = Commands().apply2file
+                  ,text   = _('Write the output file')
+                  ,side   = 'top'
                   )
                  
-        self.watch_btn = sg.Button (parent_obj = self.obj
-                                   ,action     = self.toggle_watch
-                                   ,text       = _('Start clipboard watch')
-                                   ,side       = 'top'
+        self.watch_btn = sg.Button (parent = self.obj
+                                   ,action = self.toggle_watch
+                                   ,text   = _('Start clipboard watch')
+                                   ,side   = 'top'
                                    )
                                    
-        sg.Button (parent_obj = self.obj
-                  ,action     = self.close
-                  ,text       = _('Quit')
-                  ,side       = 'top'
+        sg.Button (parent = self.obj
+                  ,action = self.close
+                  ,text   = _('Quit')
+                  ,side   = 'top'
                   )
     
     def toggle_watch(self,*args):
@@ -125,11 +125,13 @@ class Menu:
             self.watch_btn.title(_('Stop clipboard watch'))
             self.watch_btn.widget.config(fg='red')
         
-    def focus_next(self,event,*args): # If this does not work, set 'takefocus=1'
+    # If this does not work, set 'takefocus=1'
+    def focus_next(self,event,*args):
         event.widget.tk_focusNext().focus()
         return 'break'
         
-    def focus_prev(self,event,*args): # If this does not work, set 'takefocus=1'
+    # If this does not work, set 'takefocus=1'
+    def focus_prev(self,event,*args):
         event.widget.tk_focusPrev().focus()
         return 'break'
     
@@ -172,8 +174,8 @@ class Objects:
     def txt_ro(self):
         if not self._txt_ro:
             top = sg.objs.new_top(Maximize=0)
-            sg.Geometry(parent_obj=top).set('800x600')
-            self._txt_ro = sg.TextBox (parent_obj    = top
+            sg.Geometry(parent=top).set('800x600')
+            self._txt_ro = sg.TextBox (parent        = top
                                       ,SpecialReturn = False
                                       ,state         = 'disabled'
                                       )
@@ -184,8 +186,8 @@ class Objects:
     def txt(self):
         if not self._txt:
             top = sg.objs.new_top(Maximize=0)
-            sg.Geometry(parent_obj=top).set('800x600')
-            self._txt = sg.TextBox (parent_obj    = top
+            sg.Geometry(parent=top).set('800x600')
+            self._txt = sg.TextBox (parent        = top
                                    ,SpecialReturn = False
                                    )
             self._txt.title(_('Edit text:'))
@@ -245,7 +247,10 @@ class Apply:
                 self.Success = False
                 sg.Message (func    = 'Apply.__init__'
                            ,level   = _('WARNING')
-                           ,message = _('The condition "%s" is not observed!') % (len(self.orig) + ' == ' + len(self.transl))
+                           ,message = _('The condition "%s" is not observed!') \
+                                      % (len(self.orig) + ' == ' \
+                                        + len(self.transl)
+                                        )
                            )
         else:
             self.Success = False
