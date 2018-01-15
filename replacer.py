@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 
 import shared as sh
 import sharedGUI as sg
@@ -83,12 +84,12 @@ class Menu:
         self.bindings()
         
     def buttons(self):
-        sg.Button (parent_obj = self.obj
-                  ,action     = Commands().open_dic
-                  ,text       = _('Modify the dictionary')
-                  ,side       = 'top'
-                  ,TakeFocus  = True
-                  )
+        button = sg.Button (parent_obj = self.obj
+                           ,action     = Commands().open_dic
+                           ,text       = _('Modify the dictionary')
+                           ,side       = 'top'
+                           )
+        button.focus()
                  
         sg.Button (parent_obj = self.obj
                   ,action     = Commands().open_input
