@@ -16,7 +16,7 @@ globs   = {'dic':'dic.txt','file':'in.txt','file_w':'out.txt'}
 
 class Commands:
     
-    def open_dic(self,*args):
+    def open_dic(self,event=None):
         text = sh.ReadTextFile(file=globs['dic']).get()
         objs.txt().reset_data()
         objs._txt.insert(text=text)
@@ -34,7 +34,7 @@ class Commands:
                           ,_('Empty input is not allowed!')
                           )
         
-    def open_input(self,*args):
+    def open_input(self,event=None):
         text = sh.ReadTextFile(file=globs['file']).get()
         objs.txt().reset_data()
         objs._txt.insert(text=text)
@@ -50,7 +50,7 @@ class Commands:
                           ,_('Empty input is not allowed!')
                           )
         
-    def apply2file(self,*args):
+    def apply2file(self,event=None):
         text = sh.ReadTextFile(file=globs['file']).get()
         if text:
             text = objs.apply().apply(text=text)
@@ -115,7 +115,7 @@ class Menu:
                   ,side   = 'top'
                   )
     
-    def toggle_watch(self,*args):
+    def toggle_watch(self,event=None):
         if self.WatchActive:
             self.WatchActive = False
             self.watch_btn.title(_('Start clipboard watch'))
@@ -126,12 +126,12 @@ class Menu:
             self.watch_btn.widget.config(fg='red')
         
     # If this does not work, set 'takefocus=1'
-    def focus_next(self,event,*args):
+    def focus_next(self,event=None):
         event.widget.tk_focusNext().focus()
         return 'break'
         
     # If this does not work, set 'takefocus=1'
-    def focus_prev(self,event,*args):
+    def focus_prev(self,event=None):
         event.widget.tk_focusPrev().focus()
         return 'break'
     
@@ -149,10 +149,10 @@ class Menu:
                 ,action   = self.focus_prev
                 )
 
-    def show(self,*args):
+    def show(self,event=None):
         self.obj.show()
 
-    def close(self,*args):
+    def close(self,event=None):
         self.obj.close()
         
     def title(self,arg=None):
