@@ -78,7 +78,7 @@ class Menu:
         self.WatchActive = False
     
     def gui(self):
-        self.obj = sg.objs.new_top(Maximize=0)
+        self.obj = sg.objs.new_top()
         self.title()
         self.buttons()
         self.bindings()
@@ -173,7 +173,7 @@ class Objects:
     
     def txt_ro(self):
         if not self._txt_ro:
-            top = sg.objs.new_top(Maximize=0)
+            top = sg.objs.new_top()
             sg.Geometry(parent=top).set('800x600')
             self._txt_ro = sg.TextBox (parent        = top
                                       ,SpecialReturn = False
@@ -185,7 +185,7 @@ class Objects:
     
     def txt(self):
         if not self._txt:
-            top = sg.objs.new_top(Maximize=0)
+            top = sg.objs.new_top()
             sg.Geometry(parent=top).set('800x600')
             self._txt = sg.TextBox (parent        = top
                                    ,SpecialReturn = False
