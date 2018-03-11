@@ -15,8 +15,8 @@ rm -f ./{gui,replacer}.py
 # Remove shared Python files
 rm -f ./{gettext_windows.py,shared.py,sharedGUI.py}
 
-# (Linux-only) Remove build scripts
-rm -f ./{build.sh,clean_up.sh,setup.py}
+# (Wine-only) Remove build scripts
+rm -f ./{build.sh,clean_up.sh,replacer.cmd,setup.py}
 
 rmdir -p resources/locale/ru/LC_MESSAGES user
 

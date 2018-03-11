@@ -1,10 +1,24 @@
 #!/bin/sh
 
-cp -rvu /usr/local/bin/shared/resources .
-cp -rvu /usr/local/bin/ReplaceR/locale .
+# Do not use "verbose" in order to spot errors easily
 
-cp -vu /usr/local/bin/{shared.py,sharedGUI.py,regexp.ru,gettext_windows.py} .
-cp -vu /usr/local/bin/ReplaceR/{dic.txt,in.txt,out.txt,replacer.py,LICENSE,README,README-RU} .
+mkdir -p ./resources/locale/ru/LC_MESSAGES/
+mkdir ./user
 
-# Wine-only
-cp -vu /usr/local/bin/ReplaceR/build/Wine/setup.py .
+# Copy shared resources
+cp -u /usr/local/bin/shared/resources/{error.gif,info.gif,question.gif,warning.gif} ./resources/
+
+# Copy other ReplaceR resources
+cp -u /usr/local/bin/ReplaceR/resources/locale/ru/LC_MESSAGES/replacer.mo ./resources/locale/ru/LC_MESSAGES/
+cp -u /usr/local/bin/ReplaceR/user/{dic,in,out}\.txt ./user/
+
+# Copy ReplaceR Python files
+cp -u /usr/local/bin/ReplaceR/src/{gui,replacer}.py .
+
+# Copy shared Python files
+cp -u /usr/local/bin/shared/src/{gettext_windows.py,shared.py,sharedGUI.py} .
+
+# (Wine-only) Copy build scripts
+cp -u /usr/local/bin/ReplaceR/build/Wine/{build.sh,clean_up.sh,replacer.cmd,setup.py} .
+
+ls .
