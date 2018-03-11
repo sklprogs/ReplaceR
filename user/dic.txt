@@ -4,6 +4,7 @@ file	файл
 this	этот
 get	получить
 dog	собака
+cat	кошка
 cobra	кобра
 met	встретила
 banana	банан
@@ -13,3 +14,5 @@ next	следующий
 strong	сильный
 dog and cat	собака и кошка
 weak and strong	слабый и сильный
+best	лучший
+book	книга

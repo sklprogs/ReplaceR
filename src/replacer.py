@@ -1,29 +1,33 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
-import shared as sh
+import shared    as sh
 import sharedGUI as sg
-import gettext, gettext_windows
+import gui       as gi
 
+import gettext, gettext_windows
 gettext_windows.setup_env()
-gettext.install('replacer','./locale')
+gettext.install('replacer','../resources/locale')
 
 product = 'ReplaceR'
 version = '1.0'
-globs   = {'dic':'dic.txt','file':'in.txt','file_w':'out.txt'}
+
+file_dic = sh.objs.pdir().add('..','user','dic.txt')
+file_r   = sh.objs._pdir.add('..','user','in.txt')
+file_w   = sh.objs._pdir.add('..','user','out.txt')
 
 
 
 class Commands:
     
     def open_dic(self,event=None):
-        text = sh.ReadTextFile(file=globs['dic']).get()
+        text = sh.ReadTextFile(file=file_dic).get()
         objs.txt().reset_data()
         objs._txt.insert(text=text)
         objs._txt.show()
         text = objs._txt.get()
         if text:
-            sh.WriteTextFile (file       = globs['dic']
+            sh.WriteTextFile (file       = file_dic
                              ,AskRewrite = False
                              ).write(text=text)
             objs.reset()
@@ -35,13 +39,13 @@ class Commands:
                           )
         
     def open_input(self,event=None):
-        text = sh.ReadTextFile(file=globs['file']).get()
+        text = sh.ReadTextFile(file=file_r).get()
         objs.txt().reset_data()
         objs._txt.insert(text=text)
         objs._txt.show()
         text = objs._txt.get()
         if text:
-            sh.WriteTextFile (file       = globs['file']
+            sh.WriteTextFile (file       = file_r
                              ,AskRewrite = False
                              ).write(text=text)
         else:
@@ -51,10 +55,10 @@ class Commands:
                           )
         
     def apply2file(self,event=None):
-        text = sh.ReadTextFile(file=globs['file']).get()
+        text = sh.ReadTextFile(file=file_r).get()
         if text:
             text = objs.apply().apply(text=text)
-            sh.WriteTextFile (file       = globs['file_w']
+            sh.WriteTextFile (file       = file_w
                              ,AskRewrite = False
                              ).write(text)
             objs.txt_ro().reset_data()
@@ -71,94 +75,25 @@ class Commands:
 class Menu:
     
     def __init__(self):
-        self.values()
-        self.gui()
-        
-    def values(self):
-        self.WatchActive = False
-    
-    def gui(self):
-        self.obj = sg.objs.new_top()
+        self.gui = gi.Menu()
         self.title()
-        self.buttons()
         self.bindings()
         
-    def buttons(self):
-        button = sg.Button (parent = self.obj
-                           ,action = Commands().open_dic
-                           ,text   = _('Modify the dictionary')
-                           ,side   = 'top'
-                           )
-        button.focus()
-                 
-        sg.Button (parent = self.obj
-                  ,action = Commands().open_input
-                  ,text   = _('Modify the input file')
-                  ,side   = 'top'
-                  )
-        
-        sg.Button (parent = self.obj
-                  ,action = Commands().apply2file
-                  ,text   = _('Write the output file')
-                  ,side   = 'top'
-                  )
-                 
-        self.watch_btn = sg.Button (parent = self.obj
-                                   ,action = self.toggle_watch
-                                   ,text   = _('Start clipboard watch')
-                                   ,side   = 'top'
-                                   )
-                                   
-        sg.Button (parent = self.obj
-                  ,action = self.close
-                  ,text   = _('Quit')
-                  ,side   = 'top'
-                  )
-    
-    def toggle_watch(self,event=None):
-        if self.WatchActive:
-            self.WatchActive = False
-            self.watch_btn.title(_('Start clipboard watch'))
-            self.watch_btn.widget.config(fg='black')
-        else:
-            self.WatchActive = True
-            self.watch_btn.title(_('Stop clipboard watch'))
-            self.watch_btn.widget.config(fg='red')
-        
-    # If this does not work, set 'takefocus=1'
-    def focus_next(self,event=None):
-        event.widget.tk_focusNext().focus()
-        return 'break'
-        
-    # If this does not work, set 'takefocus=1'
-    def focus_prev(self,event=None):
-        event.widget.tk_focusPrev().focus()
-        return 'break'
-    
     def bindings(self):
-        sg.bind (obj      = self.obj
-                ,bindings = ['<Control-q>','<Control-w>','<Escape>']
-                ,action   = self.close
-                )
-        sg.bind (obj      = self.obj
-                ,bindings = '<Down>'
-                ,action   = self.focus_next
-                )
-        sg.bind (obj      = self.obj
-                ,bindings = '<Up>'
-                ,action   = self.focus_prev
-                )
+        self.gui.btn_dic.action = Commands().open_dic
+        self.gui.btn_inp.action = Commands().open_input
+        self.gui.btn_apl.action = Commands().apply2file
 
     def show(self,event=None):
-        self.obj.show()
+        self.gui.show()
 
     def close(self,event=None):
-        self.obj.close()
+        self.gui.close()
         
     def title(self,arg=None):
         if not arg:
             arg = sh.List(lst1=[product,version]).space_items()
-        self.obj.title(arg)
+        self.gui.obj.title(arg)
 
 
 
@@ -207,7 +142,7 @@ class Objects:
     
     def dic(self):
         if not self._dic:
-            self._dic = sh.Dic (file     = globs['dic']
+            self._dic = sh.Dic (file     = file_dic
                                ,Sortable = True
                                )
             self._dic.sort()
@@ -226,7 +161,7 @@ class Watch:
         self.old = ''
     
     def watch(self):
-        if objs.menu().WatchActive:
+        if objs.menu().gui.WatchActive:
             paste = sg.Clipboard(Silent=1).paste()
             if paste != self.old:
                 text = objs.apply().apply(paste)
