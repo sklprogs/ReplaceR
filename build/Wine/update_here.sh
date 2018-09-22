@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Do not use "verbose" in order to spot errors easily
 
@@ -6,19 +6,19 @@ mkdir -p ./resources/locale/ru/LC_MESSAGES/
 mkdir ./user
 
 # Copy shared resources
-cp -u /usr/local/bin/shared/resources/{error.gif,info.gif,question.gif,warning.gif} ./resources/
+cp -u $HOME/bin/shared/resources/{error.gif,info.gif,question.gif,warning.gif} ./resources/
 
 # Copy other ReplaceR resources
-cp -u /usr/local/bin/ReplaceR/resources/locale/ru/LC_MESSAGES/replacer.mo ./resources/locale/ru/LC_MESSAGES/
-cp -u /usr/local/bin/ReplaceR/user/{dic,in,out}\.txt ./user/
+cp -u $HOME/bin/ReplaceR/resources/locale/ru/LC_MESSAGES/replacer.mo ./resources/locale/ru/LC_MESSAGES/
+cp -u $HOME/bin/ReplaceR/user/{dic,in,out}\.txt ./user/
 
 # Copy ReplaceR Python files
-cp -u /usr/local/bin/ReplaceR/src/{gui,replacer}.py .
+cp -u $HOME/bin/ReplaceR/src/{gui,replacer}.py .
 
 # Copy shared Python files
-cp -u /usr/local/bin/shared/src/{gettext_windows.py,shared.py,sharedGUI.py} .
+cp -u $HOME/bin/shared/src/{gettext_windows.py,shared.py,sharedGUI.py} .
 
 # (Wine-only) Copy build scripts
-cp -u /usr/local/bin/ReplaceR/build/Wine/{build.sh,clean_up.sh,replacer.cmd,setup.py} .
+cp -u $HOME/bin/ReplaceR/build/Wine/{build.sh,clean_up.sh,replacer.cmd,setup.py} .
 
-ls .
+ls --color=always .

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Do not use "verbose" in order to spot errors easily
 
@@ -20,4 +20,4 @@ rm -f ./{build.sh,clean_up.sh,setup.py}
 
 rmdir -p resources/locale/ru/LC_MESSAGES user
 
-ls .
+ls --color=always .
