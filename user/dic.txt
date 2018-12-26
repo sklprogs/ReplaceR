@@ -2,6 +2,7 @@ Enter text here.	Введите текст здесь.
 This file must be tab-delimited.	Оригинал и перевод в этом файле должны быть разделены табуляцией.
 file	файл
 this	этот
+miserable	несчастный
 get	получить
 dog	собака
 cat	кошка
@@ -16,3 +17,4 @@ dog and cat	собака и кошка
 weak and strong	слабый и сильный
 best	лучший
 book	книга
+shelter	приют

@@ -27,8 +27,8 @@ class Commands:
         objs._txt.show()
         text = objs._txt.get()
         if text:
-            sh.WriteTextFile (file       = file_dic
-                             ,AskRewrite = False
+            sh.WriteTextFile (file    = file_dic
+                             ,Rewrite = True
                              ).write(text=text)
             objs.reset()
             objs.dic()
@@ -45,8 +45,8 @@ class Commands:
         objs._txt.show()
         text = objs._txt.get()
         if text:
-            sh.WriteTextFile (file       = file_r
-                             ,AskRewrite = False
+            sh.WriteTextFile (file    = file_r
+                             ,Rewrite = True
                              ).write(text=text)
         else:
             sh.log.append ('Commands.open_input'
@@ -58,8 +58,8 @@ class Commands:
         text = sh.ReadTextFile(file=file_r).get()
         if text:
             text = objs.apply().apply(text=text)
-            sh.WriteTextFile (file       = file_w
-                             ,AskRewrite = False
+            sh.WriteTextFile (file    = file_w
+                             ,Rewrite = True
                              ).write(text)
             objs.txt_ro().reset_data()
             objs._txt_ro.insert(text=text)
