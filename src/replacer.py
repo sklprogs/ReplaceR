@@ -110,9 +110,9 @@ class Objects:
         if not self._txt_ro:
             top = sg.objs.new_top()
             sg.Geometry(parent=top).set('800x600')
-            self._txt_ro = sg.TextBox (parent        = top
-                                      ,SpecialReturn = False
-                                      ,state         = 'disabled'
+            self._txt_ro = sg.TextBox (parent   = top
+                                      ,SpReturn = False
+                                      ,state    = 'disabled'
                                       )
             self._txt_ro.state = 'normal'
             self._txt_ro.title(_('Check text:'))
@@ -122,8 +122,8 @@ class Objects:
         if not self._txt:
             top = sg.objs.new_top()
             sg.Geometry(parent=top).set('800x600')
-            self._txt = sg.TextBox (parent        = top
-                                   ,SpecialReturn = False
+            self._txt = sg.TextBox (parent   = top
+                                   ,SpReturn = False
                                    )
             self._txt.title(_('Edit text:'))
         return self._txt
