@@ -1,47 +1,47 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
-import shared    as sh
-import sharedGUI as sg
+import skl_shared.shared as sh
+from skl_shared.localize import _
 
-import gettext, gettext_windows
-gettext_windows.setup_env()
-gettext.install('replacer','../resources/locale')
+PRODUCT = 'ReplaceR'
+VERSION = '1.1'
+ICON = sh.objs.get_pdir().add('..','resources','replacer.gif')
 
 
 class Menu:
     
     def __init__(self):
-        self.values()
-        self.gui()
-        
-    def values(self):
         self.WatchActive = False
+        self.set_gui()
     
-    def gui(self):
-        self.obj = sg.objs.new_top()
-        self.buttons()
-        self.bindings()
+    def set_gui(self):
+        title = sh.List(lst1=[PRODUCT,VERSION]).space_items()
+        self.parent = sh.Top (title = title
+                             ,icon = ICON
+                             )
+        self.set_buttons()
+        self.set_bindings()
         
-    def buttons(self):
-        self.btn_dic = sg.Button (parent = self.obj
+    def set_buttons(self):
+        self.btn_dic = sh.Button (parent = self.parent
                                  ,text = _('Modify the dictionary')
                                  ,side = 'top'
                                  )
-        self.btn_inp = sg.Button (parent = self.obj
+        self.btn_inp = sh.Button (parent = self.parent
                                  ,text = _('Modify the input file')
                                  ,side = 'top'
                                  )
-        self.btn_apl = sg.Button (parent = self.obj
+        self.btn_apl = sh.Button (parent = self.parent
                                  ,text = _('Write the output file')
                                  ,side = 'top'
                                  )
-        self.btn_wtc = sg.Button (parent = self.obj
+        self.btn_wtc = sh.Button (parent = self.parent
                                  ,action = self.toggle_watch
                                  ,text = _('Start clipboard watch')
                                  ,side = 'top'
                                  )
-        sg.Button (parent = self.obj
+        sh.Button (parent = self.parent
                   ,action = self.close
                   ,text = _('Quit')
                   ,side = 'top'
@@ -51,45 +51,45 @@ class Menu:
     def toggle_watch(self,event=None):
         if self.WatchActive:
             self.WatchActive = False
-            self.btn_wtc.title(_('Start clipboard watch'))
+            self.btn_wtc.set_title(_('Start clipboard watch'))
             self.btn_wtc.widget.config(fg='black')
         else:
             self.WatchActive = True
-            self.btn_wtc.title(_('Stop clipboard watch'))
+            self.btn_wtc.set_title(_('Stop clipboard watch'))
             self.btn_wtc.widget.config(fg='red')
         
-    # If this does not work, set 'takefocus=1'
     def focus_next(self,event=None):
+        # If this does not work, set 'takefocus=1'
         event.widget.tk_focusNext().focus()
         return 'break'
         
-    # If this does not work, set 'takefocus=1'
     def focus_prev(self,event=None):
+        # If this does not work, set 'takefocus=1'
         event.widget.tk_focusPrev().focus()
         return 'break'
     
-    def bindings(self):
-        sg.bind (obj = self.obj
-                ,bindings = ['<Control-q>','<Control-w>','<Escape>']
-                ,action = self.close
-                )
-        sg.bind (obj = self.obj
-                ,bindings = '<Down>'
-                ,action = self.focus_next
-                )
-        sg.bind (obj = self.obj
-                ,bindings = '<Up>'
-                ,action = self.focus_prev
-                )
+    def set_bindings(self):
+        sh.com.bind (obj = self.parent
+                    ,bindings = ['<Control-q>','<Control-w>','<Escape>']
+                    ,action = self.close
+                    )
+        sh.com.bind (obj = self.parent
+                    ,bindings = '<Down>'
+                    ,action = self.focus_next
+                    )
+        sh.com.bind (obj = self.parent
+                    ,bindings = '<Up>'
+                    ,action = self.focus_prev
+                    )
 
     def show(self,event=None):
-        self.obj.show()
+        self.parent.show()
 
     def close(self,event=None):
-        self.obj.close()
+        self.parent.close()
 
 
 if __name__ == '__main__':
-    sg.objs.start()
+    sh.com.start()
     Menu().show()
-    sg.objs.end()
+    sh.com.end()

@@ -18,3 +18,7 @@ weak and strong	слабый и сильный
 best	лучший
 book	книга
 shelter	приют
+dogs	собаки
+cats	кошки
+and	и
+have fun	весело проводят время
