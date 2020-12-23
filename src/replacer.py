@@ -1,13 +1,27 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
+import os
 import skl_shared.shared as sh
 from skl_shared.localize import _
 import gui as gi
 
-file_dic = sh.objs.get_pdir().add('..','user','dic.txt')
-file_r = sh.objs.pdir.add('..','user','in.txt')
-file_w = sh.objs.pdir.add('..','user','out.txt')
+default_dic = '''Enter text here.	Введите текст здесь.
+This file must be tab-delimited.	Оригинал и перевод в этом файле должны быть разделены табуляцией.
+nice	красивая
+hat	шляпа'''
+default_r = 'You have a nice hat!'
+
+share_dir = sh.Home(gi.PRODUCT.lower()).get_share_dir()
+sh.Path(share_dir).create()
+file_dic = os.path.join(share_dir,'dic.txt')
+file_r = os.path.join(share_dir,'in.txt')
+file_w = os.path.join(share_dir,'out.txt')
+
+if not os.path.exists(file_dic):
+    sh.WriteTextFile(file_dic).write(default_dic)
+if not os.path.exists(file_r):
+    sh.WriteTextFile(file_r).write(default_r)
 
 
 
@@ -177,13 +191,14 @@ class Apply:
             sh.com.cancel(f)
 
 
-
 objs = Objects()
 
 
-
 if __name__ == '__main__':
+    f = '[ReplaceR] replacer.__main__'
     sh.com.start()
     objs.get_watch().watch()
     objs.get_menu().show()
+    mes = _('Goodbye!')
+    sh.objs.get_mes(f,mes,True).show_debug()
     sh.com.end()
