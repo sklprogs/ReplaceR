@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ReplaceR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-23 07:43+0300\n"
-"PO-Revision-Date: 2020-12-23 07:43+0300\n"
+"POT-Creation-Date: 2020-12-23 11:22+0300\n"
+"PO-Revision-Date: 2020-12-23 11:22+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -43,20 +43,24 @@ msgstr "Выйти"
 msgid "Stop clipboard watch"
 msgstr "Не следить за буфером"
 
-#: ReplaceR/src/replacer.py:89
+#: ReplaceR/src/replacer.py:103
 msgid "Check text:"
 msgstr "Проверьте текст:"
 
-#: ReplaceR/src/replacer.py:96
+#: ReplaceR/src/replacer.py:110
 msgid "Edit text:"
 msgstr "Отредактируйте текст:"
 
-#: ReplaceR/src/replacer.py:160 skl_shared/src/logic.py:331
+#: ReplaceR/src/replacer.py:174 skl_shared/src/logic.py:331
 #: skl_shared/src/logic.py:1131 skl_shared/src/logic.py:1150
 #: skl_shared/src/logic.py:2604 skl_shared/src/logic.py:2624
 #: skl_shared/src/shared.py:4137
 msgid "The condition \"{}\" is not observed!"
 msgstr "Условие \"{}\" не выполнено!"
+
+#: ReplaceR/src/replacer.py:202
+msgid "Goodbye!"
+msgstr "До свидания!"
 
 #: skl_shared/src/gui.py:1252 skl_shared/src/logic.py:428
 #: skl_shared/src/logic.py:475 skl_shared/src/logic.py:998
