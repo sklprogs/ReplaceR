@@ -70,4 +70,4 @@ cd "$tmpdir"
 ./appimagetool-$arch.AppImage app
 # The tool is i686, but creates i386
 mv -fv "$tmpdir/$product-i386.AppImage" "$HOME/binaries/$product/$productlow-$oslow-i386-glibc$glibc.AppImage"
-#rm -rf "$tmpdir"
+rm -rf "$tmpdir"
