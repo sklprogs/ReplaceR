@@ -22,3 +22,4 @@ dogs	собаки
 cats	кошки
 and	и
 have fun	весело проводят время
+weekend	выходные
