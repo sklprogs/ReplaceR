@@ -13,8 +13,8 @@ product = 'ReplaceR'
 version = '1.0'
 
 file_dic = sh.objs.pdir().add('..','user','dic.txt')
-file_r   = sh.objs._pdir.add('..','user','in.txt')
-file_w   = sh.objs._pdir.add('..','user','out.txt')
+file_r = sh.objs._pdir.add('..','user','in.txt')
+file_w = sh.objs._pdir.add('..','user','out.txt')
 
 
 
@@ -27,7 +27,7 @@ class Commands:
         objs._txt.show()
         text = objs._txt.get()
         if text:
-            sh.WriteTextFile (file    = file_dic
+            sh.WriteTextFile (file = file_dic
                              ,Rewrite = True
                              ).write(text=text)
             objs.reset()
@@ -45,7 +45,7 @@ class Commands:
         objs._txt.show()
         text = objs._txt.get()
         if text:
-            sh.WriteTextFile (file    = file_r
+            sh.WriteTextFile (file = file_r
                              ,Rewrite = True
                              ).write(text=text)
         else:
@@ -58,7 +58,7 @@ class Commands:
         text = sh.ReadTextFile(file=file_r).get()
         if text:
             text = objs.apply().apply(text=text)
-            sh.WriteTextFile (file    = file_w
+            sh.WriteTextFile (file = file_w
                              ,Rewrite = True
                              ).write(text)
             objs.txt_ro().reset_data()
@@ -110,9 +110,9 @@ class Objects:
         if not self._txt_ro:
             top = sg.objs.new_top()
             sg.Geometry(parent=top).set('800x600')
-            self._txt_ro = sg.TextBox (parent   = top
+            self._txt_ro = sg.TextBox (parent = top
                                       ,SpReturn = False
-                                      ,state    = 'disabled'
+                                      ,state = 'disabled'
                                       )
             self._txt_ro.state = 'normal'
             self._txt_ro.title(_('Check text:'))
@@ -122,7 +122,7 @@ class Objects:
         if not self._txt:
             top = sg.objs.new_top()
             sg.Geometry(parent=top).set('800x600')
-            self._txt = sg.TextBox (parent   = top
+            self._txt = sg.TextBox (parent = top
                                    ,SpReturn = False
                                    )
             self._txt.title(_('Edit text:'))
@@ -135,14 +135,14 @@ class Objects:
     
     def apply(self):
         if not self._apply:
-            self._apply = Apply (orig   = objs.dic().orig
+            self._apply = Apply (orig = objs.dic().orig
                                 ,transl = objs._dic.transl
                                 )
         return self._apply
     
     def dic(self):
         if not self._dic:
-            self._dic = sh.Dic (file     = file_dic
+            self._dic = sh.Dic (file = file_dic
                                ,Sortable = True
                                )
             self._dic.sort()
@@ -174,14 +174,14 @@ class Watch:
 class Apply:
     
     def __init__(self,orig,transl):
-        self.orig    = orig
-        self.transl  = transl
+        self.orig = orig
+        self.transl = transl
         self.Success = True
         if self.orig and self.transl:
             if len(self.orig) != len(self.transl):
                 self.Success = False
-                sg.Message (func    = 'Apply.__init__'
-                           ,level   = _('WARNING')
+                sg.Message (func = 'Apply.__init__'
+                           ,level = _('WARNING')
                            ,message = _('The condition "%s" is not observed!') \
                                       % (len(self.orig) + ' == ' \
                                         + len(self.transl)

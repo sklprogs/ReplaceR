@@ -25,26 +25,26 @@ class Menu:
         
     def buttons(self):
         self.btn_dic = sg.Button (parent = self.obj
-                                 ,text   = _('Modify the dictionary')
-                                 ,side   = 'top'
+                                 ,text = _('Modify the dictionary')
+                                 ,side = 'top'
                                  )
         self.btn_inp = sg.Button (parent = self.obj
-                                 ,text   = _('Modify the input file')
-                                 ,side   = 'top'
+                                 ,text = _('Modify the input file')
+                                 ,side = 'top'
                                  )
         self.btn_apl = sg.Button (parent = self.obj
-                                 ,text   = _('Write the output file')
-                                 ,side   = 'top'
+                                 ,text = _('Write the output file')
+                                 ,side = 'top'
                                  )
         self.btn_wtc = sg.Button (parent = self.obj
                                  ,action = self.toggle_watch
-                                 ,text   = _('Start clipboard watch')
-                                 ,side   = 'top'
+                                 ,text = _('Start clipboard watch')
+                                 ,side = 'top'
                                  )
         sg.Button (parent = self.obj
                   ,action = self.close
-                  ,text   = _('Quit')
-                  ,side   = 'top'
+                  ,text = _('Quit')
+                  ,side = 'top'
                   )
         self.btn_dic.focus()
     
@@ -69,17 +69,17 @@ class Menu:
         return 'break'
     
     def bindings(self):
-        sg.bind (obj      = self.obj
+        sg.bind (obj = self.obj
                 ,bindings = ['<Control-q>','<Control-w>','<Escape>']
-                ,action   = self.close
+                ,action = self.close
                 )
-        sg.bind (obj      = self.obj
+        sg.bind (obj = self.obj
                 ,bindings = '<Down>'
-                ,action   = self.focus_next
+                ,action = self.focus_next
                 )
-        sg.bind (obj      = self.obj
+        sg.bind (obj = self.obj
                 ,bindings = '<Up>'
-                ,action   = self.focus_prev
+                ,action = self.focus_prev
                 )
 
     def show(self,event=None):

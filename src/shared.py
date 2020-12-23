@@ -2,8 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 copyright = 'Copyright 2015-2019, Peter Sklyar'
-license   = 'GPL v.3'
-email     = 'skl.progs@gmail.com'
+license = 'GPL v.3'
+email = 'skl.progs@gmail.com'
 
 import re
 import os, sys
@@ -31,6 +31,218 @@ import locale
 import gettext, gettext_windows
 gettext_windows.setup_env()
 gettext.install('shared','../resources/locale')
+
+
+gpl3_url_en = 'http://www.gnu.org/licenses/gpl.html'
+gpl3_url_ru = 'http://antirao.ru/gpltrans/gplru.pdf'
+
+globs = {'int':{},'bool':{},'var':{}}
+
+nbspace = ' '
+
+ru_alphabet = '№АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЪЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщыъьэюя'
+# Some vowels are put at the start for the faster search
+ru_alphabet_low = 'аеиоубявгдёжзйклмнпрстфхцчшщыъьэю№'
+lat_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+lat_alphabet_low = 'abcdefghijklmnopqrstuvwxyz'
+greek_alphabet = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω'
+greek_alphabet_low = 'αβγδεζηθικλμνξοπρστυφχψω'
+other_alphabet = 'ÀÁÂÆÇÈÉÊÑÒÓÔÖŒÙÚÛÜàáâæßçèéêñòóôöœùúûü'
+other_alphabet_low = 'àáâæßçèéêñòóôöœùúûü'
+digits = '0123456789'
+
+SectionBooleans = 'Boolean'
+SectionBooleans_abbr = 'bool'
+SectionFloatings = 'Floating Values'
+SectionFloatings_abbr = 'float'
+SectionIntegers = 'Integer Values'
+SectionIntegers_abbr = 'int'
+SectionLinuxSettings = 'Linux settings'
+SectionMacSettings = 'Mac settings'
+SectionVariables = 'Variables'
+SectionVariables_abbr = 'var'
+SectionWindowsSettings = 'Windows settings'
+
+punc_array = ['.',',','!','?',':',';']
+#todo: why there were no opening brackets?
+#punc_ext_array = ['"','”','»',']','}',')']
+punc_ext_array = ['"','“','”','','«','»','[',']'
+                  ,'{','}','(',')','’',"'"
+                  ]
+
+forbidden_win = '/\?%*:|"<>'
+forbidden_lin = '/'
+forbidden_mac = '/\?*:|"<>'
+reserved_win = ['CON','PRN','AUX','NUL','COM1','COM2','COM3','COM4'
+                ,'COM5','COM6','COM7','COM8','COM9','LPT1','LPT2','LPT3'
+                ,'LPT4','LPT5','LPT6','LPT7','LPT8','LPT9'
+                ]
+config_parser = configparser.SafeConfigParser()
+
+
+class Hotkeys:
+    ''' Transform tkinter bindings to a human readable form
+        Use the following key names:
+        http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/key-names.html
+        #todo: add remaining keypad key
+    '''
+    def __init__(self,hotkeys,sep='; '):
+        self.Success = True
+        self._hotkeys = hotkeys
+        self._sep = sep
+        self.check()
+    
+    def check(self):
+        f = '[shared] shared.Hotkeys.check'
+        if self._hotkeys and self._sep:
+            if not isinstance(self._hotkeys,str) \
+            and not isinstance(self._hotkeys,tuple) \
+            and not isinstance(self._hotkeys,list):
+                self.Success = False
+                objs.mes (f,_('WARNING')
+                         ,_('Wrong input data: "%s"!') \
+                         % str(self._hotkeys)
+                         )
+        else:
+            self.Success = False
+            #todo: do we need this warning?
+            com.empty(f)
+    
+    def _loop(self,pattern):
+        self._hotkeys = [hotkey for hotkey in self._hotkeys \
+                         if not pattern in hotkey
+                        ]
+    
+    def keypad(self):
+        ''' Both 'Return' (main key) and 'KP_Enter' (numeric keypad)
+            usually do the same thing, so we just remove KP_Enter.
+            The same relates to other keypad key.
+        '''
+        f = '[shared] shared.Hotkeys.keypad'
+        if self.Success:
+            if not isinstance(self._hotkeys,str):
+                for hotkey in self._hotkeys:
+                    ''' Do not use '<' and '>' signs here since
+                        the combination can actually be
+                        '<Control-KP_Enter>'.
+                    '''
+                    if 'Return' in hotkey:
+                        self._loop('KP_Enter')
+                    if 'Home' in hotkey:
+                        self._loop('KP_Home')
+                    if 'End' in hotkey:
+                        self._loop('KP_End')
+                    if 'Delete' in hotkey:
+                        self._loop('KP_Delete')
+                    if 'Insert' in hotkey:
+                        self._loop('KP_Insert')
+        else:
+            com.cancel(f)
+    
+    def hotkeys(self):
+        f = '[shared] shared.Hotkeys.hotkeys'
+        if self.Success:
+            self._hotkeys = [self.replace(hotkey) \
+                             for hotkey in self._hotkeys
+                            ]
+            self._hotkeys = [hotkey for hotkey in self._hotkeys \
+                             if hotkey
+                            ]
+        else:
+            com.cancel(f)
+    
+    def run(self):
+        f = '[shared] shared.Hotkeys.run'
+        result = ''
+        if self.Success:
+            if isinstance(self._hotkeys,str):
+                result = self.replace(self._hotkeys)
+            else:
+                self.keypad()
+                self.hotkeys()
+                result = self._sep.join(self._hotkeys)
+        else:
+            com.cancel(f)
+        return result
+    
+    def replace(self,key):
+        f = '[shared] shared.Hotkeys.replace'
+        if key:
+            key = key.replace('<','').replace('>','')
+            key = key.replace('Left','←').replace('Right','→')
+            key = key.replace ('Button-1'
+                              ,_('Left mouse button')
+                              )
+            key = key.replace ('ButtonRelease-1'
+                              ,_('Left mouse button')
+                              )
+            key = key.replace ('Button-2'
+                              ,_('Middle mouse button')
+                              )
+            key = key.replace ('ButtonRelease-2'
+                              ,_('Middle mouse button')
+                              )
+            key = key.replace ('Button-3'
+                              ,_('Right mouse button')
+                              )
+            key = key.replace ('ButtonRelease-3'
+                              ,_('Right mouse button')
+                              )
+            key = key.replace ('space'
+                              ,_('Space')
+                              )
+            key = key.replace('grave','~')
+            # Left and right Alt and Shift are usually interchangeable
+            key = key.replace('Alt_R','Alt_L')
+            key = key.replace('Alt_L','Alt')
+            key = key.replace('Control_L','Control')
+            key = key.replace('Control_R','Control')
+            key = key.replace('Control','Ctrl')
+            key = key.replace('Shift_R','Shift_L')
+            key = key.replace('Shift_L','Shift')
+            key = key.replace('-Key-','')
+            key = key.replace('Delete','Del')
+            key = key.replace('Insert','Ins')
+            key = key.replace('Scroll_Lock','ScrollLock')
+            key = key.replace('Print','PrintScrn')
+            key = key.replace('Up','↑').replace('Down','↓')
+            key = key.replace('Execute','SysReq')
+            key = key.replace('Num_Lock','NumLock')
+            key = key.replace('Prior','PgUp')
+            key = key.replace('Next','PgDn')
+            key = key.replace('Escape','Esc')
+            ''' We should leave only 1 key if there are key
+                both for keyboard and keypad. Thus, we generally should
+                not have to use keypad key without keyboard
+                analogs. If we do, we should excplicitly indicate that
+                it is keypad.
+            '''
+            key = key.replace('KP_Delete','Del (keypad)')
+            key = key.replace('KP_Divide','/ (keypad)')
+            key = key.replace('KP_Down','↓ (keypad)')
+            ''' '<Control-S>' actually means 'Ctrl-Shift-s' in tkinter.
+                Insert 'Shift' before making key upper-case.
+            '''
+            match = re.match('.*-([A-Z])$',key)
+            if match:
+                group = match.group(1)
+                key = key.replace ('-'       + group
+                                    ,'-Shift-' + group
+                                    )
+            ''' We make letters upper-case in order to avoid confusion,
+                e.g., when using 'i', 'l' and '1'.
+            '''
+            match = re.match('.*-([a-z])$',key)
+            if match:
+                group = match.group(1)
+                key = key.replace ('-' + group
+                                    ,'-' + group.upper()
+                                    )
+            #key = key.replace('-','+')
+        else:
+            #todo: do we need this warning?
+            self.empty(f)
+        return key
 
 
 
@@ -73,9 +285,9 @@ class OSSpecific:
             _tz = os.getenv('TZ')
             if _tz is not None and '/' in _tz:
                 os.unsetenv('TZ')
-            import pythoncom
-            from win32com.shell import shell, shellcon
-            import win32com.client, win32api
+            import pythoncom, win32com, win32com.client, win32api
+            # Required by 'Geometry'
+            import win32gui, win32con, ctypes
             if win32com.client.gencache.is_readonly:
                 win32com.client.gencache.is_readonly = False
                 ''' Under p2exe/cx_freeze the call in gencache to
@@ -86,76 +298,21 @@ class OSSpecific:
                     See also the section where EnsureDispatch is called.
                 '''
                 win32com.client.gencache.Rebuild()
-            import win32gui, win32con, ctypes # Required by 'Geometry'
-
-
-
-config_parser = configparser.SafeConfigParser()
-
-gpl3_url_en = 'http://www.gnu.org/licenses/gpl.html'
-gpl3_url_ru = 'http://antirao.ru/gpltrans/gplru.pdf'
-
-globs = {'int':{},'bool':{},'var':{}}
-
-nbspace = ' '
-
-ru_alphabet        = '№АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЪЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщыъьэюя'
-# Some vowels are put at the start for the faster search
-ru_alphabet_low    = 'аеиоубявгдёжзйклмнпрстфхцчшщыъьэю№'
-lat_alphabet       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-lat_alphabet_low   = 'abcdefghijklmnopqrstuvwxyz'
-greek_alphabet     = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω'
-greek_alphabet_low = 'αβγδεζηθικλμνξοπρστυφχψω'
-other_alphabet     = 'ÀÁÂÆÇÈÉÊÑÒÓÔÖŒÙÚÛÜàáâæßçèéêñòóôöœùúûü'
-other_alphabet_low = 'àáâæßçèéêñòóôöœùúûü'
-digits             = '0123456789'
-
-SectionBooleans        = 'Boolean'
-SectionBooleans_abbr   = 'bool'
-SectionFloatings       = 'Floating Values'
-SectionFloatings_abbr  = 'float'
-SectionIntegers        = 'Integer Values'
-SectionIntegers_abbr   = 'int'
-SectionLinuxSettings   = 'Linux settings'
-SectionMacSettings     = 'Mac settings'
-SectionVariables       = 'Variables'
-SectionVariables_abbr  = 'var'
-SectionWindowsSettings = 'Windows settings'
-
-punc_array      = ['.',',','!','?',':',';']
-#todo: why there were no opening brackets?
-#punc_ext_array = ['"','”','»',']','}',')']
-punc_ext_array  = ['"','“','”','','«','»','[',']'
-                  ,'{','}','(',')','’',"'"
-                  ]
-
-forbidden_win = '/\?%*:|"<>'
-forbidden_lin = '/'
-forbidden_mac = '/\?*:|"<>'
-reserved_win  = ['CON','PRN','AUX','NUL','COM1','COM2','COM3','COM4'
-                ,'COM5','COM6','COM7','COM8','COM9','LPT1','LPT2','LPT3'
-                ,'LPT4','LPT5','LPT6','LPT7','LPT8','LPT9'
-                ]
-
-oss = OSSpecific()
-if oss.win():
-    import win32com
-    import pythoncom
-# Load last due to problems with TZ (see 'oss.win_import')
-import datetime
+            ''' 'datetime' may have to be imported last due to
+                the problems with TZ.
+            '''
 
 
 
 class Launch:
-
     #note: 'Block' works only a 'custom_app' is set
     def __init__(self,target='',Block=False):
         self.values()
         self.target = target
-        self.Block  = Block
+        self.Block = Block
         # Do not shorten, Path is used further
-        self.h_path = Path(self.target)
-        self.ext    = self.h_path.extension().lower()
+        self.ipath = Path(self.target)
+        self.ext = self.ipath.extension().lower()
         ''' We do not use the File class because the target can be a
             directory.
         '''
@@ -165,18 +322,18 @@ class Launch:
             self.TargetExists = False
 
     def values(self):
-        self.custom_app  = ''
+        self.custom_app = ''
         self.custom_args = []
     
     def _launch(self):
         f = '[shared] shared.Launch._launch'
         if self.custom_args:
             log.append (f,_('DEBUG')
-                       ,_('Custom arguments: "%s"') % ';'.join(self.custom_args)
+                       ,_('Custom arguments: "%s"') \
+                       % ';'.join(self.custom_args)
                        )
             try:
-                ''' Block the script till the called program is closed
-                '''
+                # Block the script till the called program is closed
                 if self.Block:
                     subprocess.call(self.custom_args)
                 else:
@@ -194,7 +351,7 @@ class Launch:
     def _lin(self):
         f = '[shared] shared.Launch._lin'
         try:
-            os.system("xdg-open " + self.h_path.escape() + "&")
+            os.system("xdg-open " + self.ipath.escape() + "&")
         except OSError:
             objs.mes (f,_('ERROR')
                      ,_('Unable to open the file in an external program. You should probably check the file associations.')
@@ -219,7 +376,7 @@ class Launch:
                      )
 
     def app(self,custom_app='',custom_args=[]):
-        self.custom_app  = custom_app
+        self.custom_app = custom_app
         self.custom_args = custom_args
         if self.custom_app:
             if self.custom_args and len(self.custom_args) > 0:
@@ -267,49 +424,37 @@ class Launch:
 
 class WriteTextFile:
 
-    def __init__(self,file,Rewrite=False,UseLog=True):
+    def __init__(self,file,Rewrite=False):
         f = '[shared] shared.WriteTextFile.__init__'
-        self.file    = file
-        self.text    = ''
+        self.file = file
+        self.text = ''
         self.Rewrite = Rewrite
-        self.UseLog  = UseLog
         self.Success = True
         if not self.file:
-            if self.UseLog:
-                objs.mes (f,_('ERROR')
-                         ,_('Not enough input data!')
-                         )
-            else:
-                print(f+': Not enough input data!')
+            objs.mes (f,_('ERROR')
+                     ,_('Not enough input data!')
+                     )
             self.Success = False
 
     def _write(self,mode='w'):
         f = '[shared] shared.WriteTextFile._write'
         if mode == 'w' or mode == 'a':
-            if self.UseLog:
-                log.append (f,_('INFO')
-                           ,_('Write file "%s"') % self.file
-                           )
+            log.append (f,_('INFO')
+                       ,_('Write file "%s"') % self.file
+                       )
             try:
                 with open(self.file,mode,encoding='UTF-8') as fl:
                     fl.write(self.text)
             except:
                 self.Success = False
-                if self.UseLog:
-                    objs.mes (f,_('ERROR')
-                             ,_('Unable to write file "%s"!') \
-                             % self.file
-                             )
-                else:
-                    print(f+': Unable to write the file!')
-        else:
-            if self.UseLog:
                 objs.mes (f,_('ERROR')
-                         ,_('An unknown mode "%s"!\n\nThe following modes are supported: "%s".')\
-                         % (str(mode),'a, w')
+                         ,_('Unable to write file "%s"!') % self.file
                          )
-            else:
-                print(f+': An unknown mode!')
+        else:
+            objs.mes (f,_('ERROR')
+                     ,_('An unknown mode "%s"!\n\nThe following modes are supported: "%s".')\
+                     % (str(mode),'a, w')
+                     )
 
     def append(self,text=''):
         f = '[shared] shared.WriteTextFile.append'
@@ -322,96 +467,54 @@ class WriteTextFile:
                 '''
                 self._write('a')
             else:
-                if self.UseLog:
-                    objs.mes (f,_('ERROR')
-                             ,_('Not enough input data!')
-                             )
-                else:
-                    print(f+': Not enough input data!')
+                objs.mes (f,_('ERROR')
+                         ,_('Not enough input data!')
+                         )
         else:
-            if self.UseLog:
-                log.append (f,_('WARNING')
-                           ,_('Operation has been canceled.')
-                           )
+            log.append (f,_('WARNING')
+                       ,_('Operation has been canceled.')
+                       )
 
     def write(self,text=''):
         f = '[shared] shared.WriteTextFile.write'
         if self.Success:
             self.text = text
             if self.text:
-                if com.rewrite (file    = self.file
+                if com.rewrite (file = self.file
                                ,Rewrite = self.Rewrite
                                ):
                     self._write('w')
             else:
-                if self.UseLog:
-                    objs.mes (f,_('ERROR')
-                             ,_('Not enough input data!')
-                             )
-                else:
-                    print(f+': Not enough input data!')
+                objs.mes (f,_('ERROR')
+                         ,_('Not enough input data!')
+                         )
         else:
-            if self.UseLog:
-                log.append (f,_('WARNING')
-                           ,_('Operation has been canceled.')
-                           )
+            log.append (f,_('WARNING')
+                       ,_('Operation has been canceled.')
+                       )
 
 
 
 class Log:
 
-    def __init__(self,Use=True,Write=False
-                ,Print=True,Short=False,file=None
-                ):
+    def __init__ (self,Use=True,Short=False
+                 ):
         f = self.func = 'shared.Log.__init__'
         self.Success = True
-        self.file    = file
-        self.level   = _('INFO')
+        self.level = _('INFO')
         self.message = 'Test'
-        self.count   = 0
-        self.Write   = Write
-        self.Print   = Print
-        self.Short   = Short
+        self.count = 1
+        self.Short = Short
         if not Use:
             self.Success = False
-        if self.Write:
-            self.h_write = WriteTextFile (file    = self.file
-                                         ,Rewrite = True
-                                         ,UseLog  = False
-                                         )
-            self.Success = self.h_write.Success
-            self.clear()
-
-    def clear(self):
-        if self.Success:
-            self.h_write.write(text=_('***** Start of log. *****'))
-
-    def _write(self):
-        self.h_write.append (text='\n%d:%s:%s:%s' % (self.count
-                                                    ,self.func
-                                                    ,self.level
-                                                    ,self.message
-                                                    )
-                            )
-
-    def write(self):
-        if self.Success and self.Write:
-            if self.Short:
-                if self.level == _('WARNING') \
-                or self.level == _('ERROR'):
-                    self._write()
-            else:
-                self._write()
 
     def print(self):
         if self.Success:
-            if self.Print:
-                if self.Short:
-                    if self.level == _('WARNING') \
-                    or self.level == _('ERROR'):
-                        self._print()
-                else:
+            if self.Short:
+                if self.level in (_('WARNING'),_('ERROR')):
                     self._print()
+            else:
+                self._print()
 
     def _print(self):
         f = '[shared] shared.Log._print'
@@ -437,27 +540,11 @@ class Log:
                ):
         if self.Success:
             if func and level and message:
-                self.func    = func
-                self.level   = level
+                self.func = func
+                self.level = level
                 self.message = message
                 self.print()
-                self.write()
                 self.count += 1
-
-if oss.win():
-    log = Log (Use   = True
-              ,Write = False
-              ,Print = True
-              ,Short = False
-              ,file  = r'C:\Users\pete\AppData\Local\Temp\log'
-              )
-else:
-    log = Log (Use   = True
-              ,Write = False
-              ,Print = True
-              ,Short = False
-              ,file  = '/tmp/log'
-              )
 
 
 
@@ -465,9 +552,9 @@ else:
 class TextDic:
 
     def __init__(self,file,Sortable=False):
-        self.file     = file
+        self.file = file
         self.Sortable = Sortable
-        self.h_read   = ReadTextFile(self.file)
+        self.iread = ReadTextFile(self.file)
         self.reset()
 
     ''' This is might be needed only for those dictionaries that
@@ -611,7 +698,7 @@ class TextDic:
 
     def get(self):
         if not self.text:
-            self.text = self.h_read.load()
+            self.text = self.iread.load()
         return self.text
 
     def lines(self):
@@ -625,7 +712,7 @@ class TextDic:
         return self._list
 
     def reset(self):
-        self.text = self.h_read.load()
+        self.text = self.iread.load()
         self.orig = []
         self.transl = []
         self._list = self.get().splitlines()
@@ -646,9 +733,9 @@ class TextDic:
                                 ]
                 tmp_list.sort(key=lambda x: x[0],reverse=True)
                 for i in range(len(self._list)):
-                    self.orig[i]   = tmp_list[i][1]
+                    self.orig[i] = tmp_list[i][1]
                     self.transl[i] = tmp_list[i][2]
-                    self._list[i]  = self.orig[i] + '\t' \
+                    self._list[i] = self.orig[i] + '\t' \
                                                   + self.transl[i]
                 self.text = '\n'.join(self._list)
             else:
@@ -683,7 +770,7 @@ class TextDic:
     def write(self):
         f = '[shared] shared.TextDic.write'
         if self.Success:
-            WriteTextFile (file    = self.file
+            WriteTextFile (file = self.file
                           ,Rewrite = True
                           ).write(self.get())
         else:
@@ -697,9 +784,9 @@ class ReadTextFile:
 
     def __init__(self,file):
         f = '[shared] shared.ReadTextFile.__init__'
-        self.file    = file
-        self._text   = ''
-        self._list   = []
+        self.file = file
+        self._text = ''
+        self._list = []
         self.Success = True
         if self.file and os.path.isfile(self.file):
             pass
@@ -948,10 +1035,6 @@ class Text:
             match = re.search(my_expr,self.text)
         return self.text
 
-    def delete_autotranslate_markers(self):
-        self.text = self.text.replace('[[','').replace(']]','').replace('{','').replace('}','').replace('_','')
-        return self.text
-
     def delete_embraced_text(self,opening_sym='(',closing_sym=')'):
         ''' If there are some brackets left after performing this
             operation, ensure that all of them are in the right place
@@ -1134,7 +1217,7 @@ class Text:
                      )
         self.grow (max_len = max_len
                   ,FromEnd = FromEnd
-                  ,sym     = sym
+                  ,sym = sym
                   )
         return self.text
 
@@ -1253,6 +1336,20 @@ class List:
                 return False
         return True
     
+    def duplicates_low(self):
+        ''' Remove (case-insensitively) duplicate items (positioned
+            after original items). Both lists must consist of strings.
+        '''
+        cilst = [item.lower() for item in self.lst1]
+        i = len(cilst) - 1
+        while i >= 0:
+            ind = cilst.index(cilst[i])
+            if ind < i:
+                del cilst[i]
+                del self.lst1[i]
+            i -= 1
+        return self.lst1
+    
     # Remove duplicate items (positioned after original items)
     def duplicates(self):
         i = len(self.lst1) - 1
@@ -1273,9 +1370,11 @@ class List:
                 elif self.lst1[i] and self.lst1[i][0] in punc_array \
                 or self.lst1[i][0] in '”»])}':
                     text += self.lst1[i]
-                # We do not know for sure where quotes should be placed, but we cannot leave out cases like ' " '
                 elif len(text) > 1 and text[-2].isspace() \
                 and text[-1] == '"':
+                    ''' We do not know for sure where quotes should be
+                        placed, but we cannot leave out cases like ' " '
+                    '''
                     text += self.lst1[i]
                 elif len(text) > 1 and text[-2].isspace() \
                 and text[-1] == "'":
@@ -1331,20 +1430,20 @@ class Time:
     def __init__ (self,_timestamp=None,pattern='%Y-%m-%d'
                  ,MondayWarning=False
                  ):
-        self.reset (_timestamp    = _timestamp
-                   ,pattern       = pattern
+        self.reset (_timestamp = _timestamp
+                   ,pattern = pattern
                    ,MondayWarning = MondayWarning
                    )
 
     def reset (self,_timestamp=None,pattern='%Y-%m-%d'
               ,MondayWarning=False
               ):
-        self.Success       = True
-        self.pattern       = pattern
+        self.Success = True
+        self.pattern = pattern
         self.MondayWarning = MondayWarning
-        self._timestamp    = _timestamp
+        self._timestamp = _timestamp
         self._instance = self._date = self._year = self._month_abbr \
-                       = self._month_name = ''
+ = self._month_name = ''
         # Prevent recursion
         if self._timestamp is None:
             self.todays_date()
@@ -1532,8 +1631,8 @@ class File:
         f = '[shared] shared.File.__init__'
         self.Success = True
         self.Rewrite = Rewrite
-        self.file    = file
-        self.dest    = dest
+        self.file = file
+        self.dest = dest
         # This will allow to skip some checks for destination
         if not self.dest:
             self.dest = self.file
@@ -1564,6 +1663,30 @@ class File:
                      ,_('The object "%s" is not a file!') % self.file
                      )
 
+    def size(self,Follow=True):
+        f = '[shared] shared.File.size'
+        result = 0
+        if self.Success:
+            try:
+                if Follow:
+                    cond = not os.path.islink(self.file)
+                else:
+                    cond = True
+                if cond:
+                    result = os.path.getsize(self.file)
+            except Exception as e:
+                ''' Along with other errors, 'No such file or directory'
+                    error will be raised if Follow=False and this is
+                    a broken symbolic link.
+                '''
+                objs.mes (f,_('WARNING')
+                         ,_('Operation has failed!\nDetails: %s') \
+                         % str(e)
+                         )
+        else:
+            com.cancel(f)
+        return result
+    
     def _copy(self):
         f = '[shared] shared.File._copy'
         Success = True
@@ -1622,7 +1745,7 @@ class File:
                          ,_('Unable to copy the file "%s" to iself!') \
                          % self.file
                          )
-            elif com.rewrite (file    = self.dest
+            elif com.rewrite (file = self.dest
                              ,Rewrite = self.Rewrite
                              ):
                 Success = self._copy()
@@ -1682,7 +1805,7 @@ class File:
                          ,_('Moving is not necessary, because the source and destination are identical (%s).')\
                          % self.file
                          )
-            elif com.rewrite (file    = self.dest
+            elif com.rewrite (file = self.dest
                              ,Rewrite = self.Rewrite
                              ):
                 Success = self._move()
@@ -1725,6 +1848,27 @@ class Path:
     def __init__(self,path):
         self.reset(path)
 
+    def free_space(self):
+        f = '[shared] shared.Path.free_space'
+        result = 0
+        if self.path:
+            if os.path.exists(self.path):
+                try:
+                    istat = os.statvfs(self.path)
+                    result = istat.f_bavail * istat.f_bsize
+                except Exception as e:
+                    objs.mes (f,_('WARNING')
+                             ,_('Operation has failed!\nDetails: %s') \
+                             % str(e)
+                             )
+            else:
+                objs.mes (f,_('WARNING')
+                         ,_('Wrong input data: "%s"!') % str(self.path)
+                         )
+        else:
+            com.empty(f)
+        return result
+    
     def _splitpath(self):
         if not self._split:
             self._split = os.path.splitext(self.basename())
@@ -1802,7 +1946,11 @@ class Path:
         return self._filename
 
     def reset(self,path):
-        self.path = path
+        # Prevent 'NoneType'
+        if path:
+            self.path = path
+        else:
+            self.path = ''
         ''' Building paths in Windows:
             - Use raw strings (e.g., set path as r'C:\1.txt')
             - Use os.path.join(mydir,myfile) or os.path.normpath(path)
@@ -1813,10 +1961,11 @@ class Path:
             dirname work differently in this case ('' and the last
             directory, correspondingly)
         '''
-        self.path      = self.path.rstrip('//')
+        if self.path != '/':
+            self.path = self.path.rstrip('//')
         self._basename = self._dirname = self._extension \
-                       = self._filename = self._split = self._date = ''
-        self.parts     = []
+ = self._filename = self._split = self._date = ''
+        self.parts = []
 
     def split(self):
         if not self.parts:
@@ -1842,15 +1991,15 @@ class WriteBinary:
     def __init__(self,file,obj,Rewrite=True):
         f = '[shared] shared.WriteBinary.__init__'
         self.Success = True
-        self.file    = file
-        self.obj     = obj
+        self.file = file
+        self.obj = obj
         if self.file and self.obj:
             self.Rewrite = Rewrite
-            self.fragm   = None
+            self.fragm = None
         else:
             self.Success = False
             log.append (f,_('WARNING')
-                       ,_('Operation has been canceled.')
+                       ,_('Empty input is not allowed!')
                        )
 
     def _write(self,mode='w+b'):
@@ -1894,7 +2043,7 @@ class WriteBinary:
     def write(self):
         f = '[shared] shared.WriteBinary.write'
         if self.Success:
-            if com.rewrite (file    = self.file
+            if com.rewrite (file = self.file
                            ,Rewrite = self.Rewrite
                            ):
                 self._write(mode='w+b')
@@ -1912,10 +2061,10 @@ class WriteBinary:
 class Dic:
 
     def __init__(self,file,Sortable=False):
-        self.file     = file
+        self.file = file
         self.Sortable = Sortable
-        self.errors   = []
-        self.h_read   = ReadTextFile(self.file)
+        self.errors = []
+        self.iread = ReadTextFile(self.file)
         self.reset()
 
     def _delete_duplicates(self):
@@ -1969,8 +2118,8 @@ class Dic:
         '''
         if self.get():
             self.Success = True
-            self.orig    = []
-            self.transl  = []
+            self.orig = []
+            self.transl = []
             ''' Building lists takes ~0.1 longer without temporary
                 variables (now self._split() takes ~0.256)
             '''
@@ -2070,7 +2219,7 @@ class Dic:
 
     def get(self):
         if not self.text:
-            self.text = self.h_read.load()
+            self.text = self.iread.load()
         return self.text
 
     def lines(self):
@@ -2084,15 +2233,15 @@ class Dic:
         return self._list
 
     def reset(self):
-        self.text   = self.h_read.load()
-        self.orig   = []
+        self.text = self.iread.load()
+        self.orig = []
         self.transl = []
-        self._list  = self.get().splitlines()
+        self._list = self.get().splitlines()
         # Delete empty and commented lines
-        self._list  = [line for line in self._list if line \
+        self._list = [line for line in self._list if line \
                        and not line.startswith('#')
                       ]
-        self.text   = '\n'.join(self._list)
+        self.text = '\n'.join(self._list)
         self._lines = len(self._list)
         self._split()
 
@@ -2146,7 +2295,7 @@ class Dic:
     def write(self):
         f = '[shared] shared.Dic.write'
         if self.Success:
-            WriteTextFile (file    = self.file
+            WriteTextFile (file = self.file
                           ,Rewrite = True
                           ).write(self.get())
         else:
@@ -2159,9 +2308,9 @@ class Dic:
 class ReadBinary:
 
     def __init__(self,file):
-        self.file    = file
-        self.obj     = None
-        h_file       = File(self.file)
+        self.file = file
+        self.obj = None
+        h_file = File(self.file)
         self.Success = h_file.Success
 
     def _load(self):
@@ -2213,8 +2362,13 @@ class Directory:
         f = '[shared] shared.Directory.__init__'
         self.values()
         if path:
-            # Removes trailing slashes if necessary
-            self.dir = Path(path).path
+            ''' Remove trailing slashes and follow symlinks. No error is
+                thrown for broken symlinks, but further checks will fail
+                for them. Failing a real path (e.g., pointing to
+                the volume that is not mounted yet) is more
+                apprehensible than failing a symlink.
+            '''
+            self.dir = os.path.realpath(path)
         else:
             self.dir = ''
         if dest:
@@ -2227,16 +2381,43 @@ class Directory:
                      ,_('Wrong input data: "%s"') % self.dir
                      )
 
+    def size(self,Follow=True):
+        f = '[shared] shared.Directory.size'
+        result = 0
+        if self.Success:
+            try:
+                for dirpath, dirnames, filenames in os.walk(self.dir):
+                    for name in filenames:
+                        obj = os.path.join(dirpath,name)
+                        if Follow:
+                            cond = not os.path.islink(obj)
+                        else:
+                            cond = True
+                        if cond:
+                            result += os.path.getsize(obj)
+            except Exception as e:
+                ''' Along with other errors, 'No such file or directory'
+                    error will be raised if Follow=False and there are
+                    broken symbolic links.
+                '''
+                objs.mes (f,_('WARNING')
+                         ,_('Operation has failed!\nDetails: %s') \
+                         % str(e)
+                         )
+        else:
+            com.cancel(f)
+        return result
+    
     def values(self):
         self.Success = True
         # Assigning lists must be one per line
-        self._list           = []
-        self._rel_list       = []
-        self._files          = []
-        self._rel_files      = []
-        self._dirs           = []
-        self._rel_dirs       = []
-        self._extensions     = []
+        self._list = []
+        self._rel_list = []
+        self._files = []
+        self._rel_files = []
+        self._dirs = []
+        self._rel_dirs = []
+        self._extensions = []
         self._extensions_low = []
     
     def extensions(self): # with a dot
@@ -2399,14 +2580,14 @@ class Config:
         self.values()
         
     def values(self):
-        self.Success          = True
-        self.sections         = [SectionVariables]
-        self.sections_abbr    = [SectionVariables_abbr]
-        self.sections_func    = [config_parser.get]
-        self.message          = _('The following sections and/or keys are missing:') + '\n'
-        self.total_keys       = 0
-        self.changed_keys     = 0
-        self.missing_keys     = 0
+        self.Success = True
+        self.sections = [SectionVariables]
+        self.sections_abbr = [SectionVariables_abbr]
+        self.sections_func = [config_parser.get]
+        self.message = _('The following sections and/or keys are missing:') + '\n'
+        self.total_keys = 0
+        self.changed_keys = 0
+        self.missing_keys = 0
         self.missing_sections = 0
 
     def load(self):
@@ -2454,8 +2635,8 @@ class Config:
                 self.message += '\n' + _('Missing keys: %d') \
                                 % self.missing_keys
                 self.message += '\n' + _('The default configuration has been loaded.')
-                objs.mes (func    = 'Config.check'
-                         ,level   = _('WARNING')
+                objs.mes (func = 'Config.check'
+                         ,level = _('WARNING')
                          ,message = self.message
                          )
                 self._default()
@@ -2483,96 +2664,76 @@ class Config:
 
 
 class Online:
-
+    ''' If you get 'TypeError("quote_from_bytes() expected bytes")',
+        then you probably forgot to call 'self.reset' here or
+        in children classes.
+    '''
     def __init__ (self,base_str='%s',search_str=''
-                 ,encoding='UTF-8',MTSpecific=False
+                 ,encoding='UTF-8'
                  ):
-        self.reset (base_str   = base_str
+        self.reset (base_str = base_str
                    ,search_str = search_str
-                   ,encoding   = encoding
-                   ,MTSpecific = MTSpecific
+                   ,encoding = encoding
                    )
 
-    def bytes_common(self):
+    def get_bytes(self):
         if not self._bytes:
             self._bytes = bytes (self.search_str
                                 ,encoding = self.encoding
                                 )
-
-    def bytes_multitran(self):
-        if not self._bytes:
-            # Otherwise, will not be able to encode 'Ъ'
-            try:
-                self._bytes = bytes (self.search_str
-                                    ,encoding = globs['var']['win_encoding']
-                                    )
-            except:
-                ''' Otherwise, will not be able to encode specific
-                    characters
-                '''
-                try:
-                    self._bytes = bytes (self.search_str
-                                        ,encoding='UTF-8'
-                                        )
-                except:
-                    self._bytes = ''
-
-    def bytes(self):
-        if self.MTSpecific:
-            self.bytes_multitran()
-        else:
-            self.bytes_common()
         return self._bytes
 
     # Open a URL in a default browser
     def browse(self):
         f = '[shared] shared.Online.browse'
         try:
-            webbrowser.open(self.url(),new=2,autoraise=True)
-        except:
+            webbrowser.open (url = self.url()
+                            ,new = 2
+                            ,autoraise = True
+                            )
+        except Exception as e:
             objs.mes (f,_('ERROR')
-                     ,_('Failed to open URL "%s" in a default browser!')\
-                     % self._url
+                     ,_('Failed to open URL "%s" in a default browser!\n\nDetails: %s')\
+                     % (self._url,str(e))
                      )
 
     # Create a correct online link (URI => URL)
     def url(self):
         f = '[shared] shared.Online.url'
         if not self._url:
-            self._url = self.base_str % urllib.parse.quote(self.bytes())
+            self._url = self.base_str % urllib.parse.quote(self.get_bytes())
             log.append (f,_('DEBUG')
                        ,str(self._url)
                        )
         return self._url
 
     def reset (self,base_str='',search_str=''
-              ,encoding='UTF-8',MTSpecific=False
+              ,encoding='UTF-8'
               ):
-        self.encoding   = encoding
-        self.MTSpecific = MTSpecific
-        self.base_str   = base_str
+        self._bytes = None
+        self._url = None
+        self.encoding = encoding
+        self.base_str = base_str
         self.search_str = search_str
-        self._bytes     = None
-        self._url       = None
 
 
 
 class Diff:
 
     def __init__(self,text1='',text2='',file=None):
-        self.Custom      = False
+        self.Custom = False
         ''' Some browsers update web-page as soon as we rewrite it, and
             some even do not open the same file again. So, we have to
             create a new temporary file each time.
         '''
-        self.wda_html    = com.tmpfile(suffix='.htm',Delete=0)
-        self.h_wda_write = WriteTextFile (file    = self.wda_html
-                                         ,Rewrite = True
-                                         )
+        self.wda_html = com.tmpfile(suffix='.htm',Delete=0)
+        self.iwda_write = WriteTextFile (file = self.wda_html
+                                        ,Rewrite = True
+                                        )
         if text1 or text2:
             self.reset (text1 = text1
                        ,text2 = text2
-                       ,file  = file
+                       ,file = file
                        )
 
     def reset(self,text1,text2,file=None):
@@ -2580,18 +2741,18 @@ class Diff:
         self.text1 = text1
         self.text2 = text2
         if file:
-            self.Custom  = True
-            self.file    = file
+            self.Custom = True
+            self.file = file
             self._header = ''
-            self.h_write = WriteTextFile (file    = self.file
+            self.iwrite = WriteTextFile (file = self.file
                                          ,Rewrite = False
                                          )
-            self.h_path  = Path(self.file)
+            self.ipath = Path(self.file)
         else:
-            self.Custom  = False
-            self.file    = self.wda_html
+            self.Custom = False
+            self.file = self.wda_html
             self._header = '<title>%s</title>' % _('Differences:')
-            self.h_write = self.h_wda_write
+            self.iwrite = self.iwda_write
         return self
 
     def diff(self):
@@ -2605,7 +2766,7 @@ class Diff:
 
     def header(self):
         if self.Custom:
-            self._header = self.h_path.basename().replace(self.h_path.extension(),'')
+            self._header = self.ipath.basename().replace(self.ipath.extension(),'')
             self._header = '<title>' + self._header + '</title>'
         self._diff = self._diff.replace('<title></title>',self._header)\
                      + '\n'
@@ -2620,8 +2781,8 @@ class Diff:
             else:
                 self.diff()
                 self.header()
-                self.h_write.write(self._diff)
-                if self.h_write.Success:
+                self.iwrite.write(self._diff)
+                if self.iwrite.Success:
                     ''' Cannot reuse the class instance because the
                         temporary file might be missing
                     '''
@@ -2638,7 +2799,7 @@ class Shortcut:
     def __init__(self,symlink='',path=''):
         f = '[shared] shared.Shortcut.__init__'
         self.Success = True
-        self.path    = path
+        self.path = path
         self.symlink = symlink
         if not self.path and not self.symlink:
             self.Success = False
@@ -2796,9 +2957,9 @@ class Email:
     '''
     def __init__(self,email='',subject='',message='',attachment=''):
         if email:
-            self.reset (email      = email
-                       ,subject    = subject
-                       ,message    = message
+            self.reset (email = email
+                       ,subject = subject
+                       ,message = message
                        ,attachment = attachment
                        )
     
@@ -2809,7 +2970,7 @@ class Email:
             all mail agents support ';'). #note that, however, Outlook
             supports ONLY ';' and Evolution - only ','!
         '''
-        self._email   = email
+        self._email = email
         self._subject = Input (title = f
                               ,value = subject
                               ).not_none()
@@ -2880,8 +3041,8 @@ class Email:
         if self.Success:
             if not self.evolution() and not self.thunderbird() \
             and not self.outlook():
-                self._subject    = self.sanitize(self._subject)
-                self._message    = self.sanitize(self._message)
+                self._subject = self.sanitize(self._subject)
+                self._message = self.sanitize(self._message)
                 self._attachment = self.sanitize(self._attachment)
                 self.browser()
         else:
@@ -2896,10 +3057,10 @@ class Email:
             try:
                 import win32com.client
                 #https://stackoverflow.com/a/51993450
-                outlook       = win32com.client.dynamic.Dispatch('outlook.application')
-                mail          = outlook.CreateItem(0)
-                mail.To       = self._email.replace(',',';')
-                mail.Subject  = self._subject
+                outlook = win32com.client.dynamic.Dispatch('outlook.application')
+                mail = outlook.CreateItem(0)
+                mail.To = self._email.replace(',',';')
+                mail.Subject = self._subject
                 mail.HtmlBody = '<html><body><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">%s</body></html>'\
                                 % self._message
                 if self._attachment:
@@ -2983,12 +3144,12 @@ class Email:
 class Grep:
 
     def __init__(self,lst,start=[],middle=[],end=[]):
-        self._lst    = lst
-        self._start  = start
+        self._lst = lst
+        self._start = start
         self._middle = middle
-        self._end    = end
-        self._found  = []
-        self.i       = 0
+        self._end = end
+        self._found = []
+        self.i = 0
         self.sanitize()
 
     def sanitize(self):
@@ -3068,11 +3229,11 @@ class Word:
             _nml: position of the last symbol of _nm # 'matches'
         '''
         self._nm = self._nmf = self._nml = self._pf \
-                     = self._pl = self._nf = self._nl = self._cyr \
-                     = self._lat = self._greek = self._digit \
-                     = self._empty = self._ref = self._sent_no \
-                     = self._spell_ru = self._sents_len = self._tf \
-                     = self._tl = None
+ = self._pl = self._nf = self._nl = self._cyr \
+ = self._lat = self._greek = self._digit \
+ = self._empty = self._ref = self._sent_no \
+ = self._spell_ru = self._sents_len = self._tf \
+ = self._tl = None
 
     def empty(self):
         if self._empty is None:
@@ -3232,7 +3393,7 @@ class Words:
     def __init__(self,text,Auto=False):
         f = '[shared] shared.Words.__init__'
         self.Success = True
-        self.Auto    = Auto
+        self.Auto = Auto
         self.values()
         if text:
             log.append (f,_('INFO')
@@ -3242,10 +3403,10 @@ class Words:
                 algorithm for finding words. We must, however, drop
                 double space cases.
             '''
-            self._text_orig   = Text(text=text,Auto=self.Auto).text
+            self._text_orig = Text(text=text,Auto=self.Auto).text
             self._line_breaks = Search(self._text_orig,'\n').next_loop()
-            self._text_p      = Text(text=self._text_orig).delete_line_breaks()
-            self._text_n      = Text(text=self._text_p).delete_punctuation().lower()
+            self._text_p = Text(text=self._text_orig).delete_line_breaks()
+            self._text_n = Text(text=self._text_p).delete_punctuation().lower()
             self.split()
         else:
             self.Success = False
@@ -3254,14 +3415,14 @@ class Words:
                        )
                        
     def values(self):
-        self._no          = 0
-        self.words        = []
+        self._no = 0
+        self.words = []
         self._line_breaks = []
-        self._list_nm     = []
-        self._text_nm     = None
-        self._text_orig   = ''
-        self._text_p      = ''
-        self._text_n      = ''
+        self._list_nm = []
+        self._text_nm = None
+        self._text_orig = ''
+        self._text_p = ''
+        self._text_n = ''
 
     def split(self):
         f = '[shared] shared.Words.split'
@@ -3593,8 +3754,8 @@ class Words:
 class Search:
 
     def __init__(self,text=None,search=None):
-        self.Success    = False
-        self.i          = 0
+        self.Success = False
+        self.i = 0
         self._next_loop = []
         self._prev_loop = []
         if text and search:
@@ -3602,12 +3763,12 @@ class Search:
 
     def reset(self,text,search):
         f = '[shared] shared.Search.reset'
-        self.Success    = True
-        self.i          = 0
+        self.Success = True
+        self.i = 0
         self._next_loop = []
         self._prev_loop = []
-        self._text      = text
-        self._search    = search
+        self._text = text
+        self._search = search
         if not self._search or not self._text:
             objs.mes (f,_('WARNING')
                      ,_('Wrong input data!')
@@ -3754,17 +3915,17 @@ class Decline:
     def __init__ (self,text='',number=''
                  ,case='',Auto=True):
         if text:
-            self.reset (text   = text
+            self.reset (text = text
                        ,number = number
-                       ,case   = case
-                       ,Auto   = Auto
+                       ,case = case
+                       ,Auto = Auto
                        )
         else:
-            self.Auto    = Auto
-            self._orig   = ''
+            self.Auto = Auto
+            self._orig = ''
             self._number = 'sing'
-            self._case   = 'nomn'
-            self._list   = []
+            self._case = 'nomn'
+            self._list = []
 
     def reset(self,text,number='',case='',Auto=True):
         ''' #todo:
@@ -3861,8 +4022,7 @@ class Objects:
     '''
     def __init__(self):
         self._enchant = self._morph = self._pretty_table = self._pdir \
-                      = self._mes = self._online_mt \
-                      = self._online_other = self._tmpfile = None
+ = self._mes = self._online = self._tmpfile = None
 
     def tmpfile(self,suffix='.htm',Delete=0):
         if self._tmpfile is None:
@@ -3871,15 +4031,10 @@ class Objects:
                                         )
         return self._tmpfile
     
-    def online_mt(self):
-        if self._online_mt is None:
-            self._online_mt = Online(MTSpecific=True)
-        return self._online_mt
-
-    def online_other(self):
-        if self._online_other is None:
-            self._online_other = Online(MTSpecific=False)
-        return self._online_other
+    def online(self):
+        if self._online is None:
+            self._online = Online()
+        return self._online
     
     def mes (self,func='MAIN',level=_('DEBUG')
             ,message='',Silent=False
@@ -3901,8 +4056,8 @@ class Objects:
                 Returning the function results may be useful if, for
                 example, we need 'sg.Message.Yes' value.
             '''
-            return self._mes (func    = func
-                             ,level   = level
+            return self._mes (func = func
+                             ,level = level
                              ,message = message
                              )
     
@@ -4018,10 +4173,10 @@ class Table:
                  ):
         f = '[shared] shared.Table.__init__'
         self._headers = headers
-        self._rows    = rows
-        self.Shorten  = Shorten
-        self.MaxRow   = MaxRow
-        self.MaxRows  = MaxRows
+        self._rows = rows
+        self.Shorten = Shorten
+        self.MaxRow = MaxRow
+        self.MaxRows = MaxRows
         if self._headers and self._rows:
             self.Success = True
         else:
@@ -4101,8 +4256,8 @@ class FixBaseName:
         a separator and not an illegal character.
     '''
     def __init__(self,basename,AllOS=False,max_len=0):
-        self.AllOS    = AllOS
-        self._name    = basename
+        self.AllOS = AllOS
+        self._name = basename
         self._max_len = max_len
         
     def length(self):
@@ -4156,13 +4311,16 @@ class FixBaseName:
 
 class Get:
     
-    def __init__(self,url,encoding='UTF-8',Verbose=True,Verify=False):
-        self._timeout  = 6
-        self._html     = ''
-        self._url      = url
+    def __init__ (self,url,encoding='UTF-8'
+                 ,Verbose=True,Verify=False
+                 ,timeout=6
+                 ):
+        self._html = ''
+        self._timeout = timeout
+        self._url = url
         self._encoding = encoding
-        self.Verbose   = Verbose
-        self.Verify    = Verify
+        self.Verbose = Verbose
+        self.Verify = Verify
         self.unverified()
     
     def read(self):
@@ -4192,8 +4350,8 @@ class Get:
         '''
         f = '[shared] shared.Get._get'
         try:
-            req = urllib.request.Request (url     = self._url
-                                         ,data    = None
+            req = urllib.request.Request (url = self._url
+                                         ,data = None
                                          ,headers = {'User-Agent': \
                                                      'Mozilla'
                                                     }
@@ -4336,7 +4494,7 @@ class References:
                 return word_no2
             else:
                 delta_before = word_no - word_no1
-                delta_after  = word_no2 - word_no
+                delta_after = word_no2 - word_no
                 if min(delta_before,delta_after) == delta_before:
                     return word_no1
                 else:
@@ -4398,12 +4556,12 @@ class Links:
                 self._links[i] = urllib.parse.unquote(self._links[i])
     
     def values(self):
-        self._pos   = 0
+        self._pos = 0
         self._links = []
     
     def poses(self):
         text = self._text
-        search = Search (text   = self._text
+        search = Search (text = self._text
                         ,search = self._root
                         )
         loop = search.next_loop()
@@ -4455,14 +4613,13 @@ class Links:
 
 
 class FilterList:
-    ''' Filter base names (case-ignorant) of files and folders in a path
-        Blacklist is a list of patterns, not obligatory full names
+    ''' Filter base names (case-ignorant) of files & folders in a path.
+        Blacklist is a list of patterns, not obligatory full names.
     '''
-
     def __init__(self,path,blacklist=[]):
-        self._list   = []
-        self._path   = path
-        self._block  = blacklist
+        self._list = []
+        self._path = path
+        self._block = blacklist
         self.Success = Directory(self._path).Success \
                        and isinstance(blacklist,list)
     
@@ -4567,17 +4724,50 @@ class Commands:
 
     def __init__(self):
         self.lang()
+        
+    # IEC standard
+    def human_size(self,bsize,LargeOnly=False):
+        result = '%d %s' % (0,_('B'))
+        if bsize:
+            tebibytes = bsize // pow(2,40)
+            cursize = tebibytes * pow(2,40)
+            gibibytes = (bsize - cursize) // pow(2,30)
+            cursize  += gibibytes * pow(2,30)
+            mebibytes = (bsize - cursize) // pow(2,20)
+            cursize  += mebibytes * pow(2,20)
+            kibibytes = (bsize - cursize) // pow(2,10)
+            cursize  += kibibytes * pow(2,10)
+            rbytes = bsize - cursize
+            mes = []
+            if tebibytes:
+                mes.append('%d %s' % (tebibytes,_('TiB')))
+            if gibibytes:
+                mes.append('%d %s' % (gibibytes,_('GiB')))
+            if mebibytes:
+                mes.append('%d %s' % (mebibytes,_('MiB')))
+            if not (LargeOnly and bsize // pow(2,20)):
+                if kibibytes:
+                    mes.append('%d %s' % (kibibytes,_('KiB')))
+                if rbytes:
+                    mes.append('%d %s' % (rbytes,_('B')))
+            if mes:
+                result = ' '.join(mes)
+        return result
+    
+    def split_time(self,length=0):
+        hours = length // 3600
+        all_sec = hours * 3600
+        minutes = (length - all_sec) // 60
+        all_sec += minutes * 60
+        seconds = length - all_sec
+        return(hours,minutes,seconds)
     
     def easy_time(self,length=0):
         f = '[shared] shared.Commands.easy_time'
         result = '00:00:00'
         if length:
-            hours   = length // 3600
-            all_sec = hours * 3600
-            minutes = (length - all_sec) // 60
-            all_sec += minutes * 60
-            seconds = length - all_sec
-            mes     = []
+            hours, minutes, seconds = self.split_time(length)
+            mes = []
             if hours:
                 mes.append(str(hours))
             item = str(minutes)
@@ -4602,7 +4792,7 @@ class Commands:
             # Prevent errors caused by 'datetime' parsing microseconds
             tmp = date.split('.')
             if date != tmp[0]:
-                ind  = date.index('.'+tmp[-1])
+                ind = date.index('.'+tmp[-1])
                 date = date[0:ind]
             itime._instance = datetime.datetime.strptime(date,pattern)
             return itime.timestamp()
@@ -4618,8 +4808,8 @@ class Commands:
         result = 0
         if length:
             if isinstance(length,str) and length[0] == 'P':
-                days    = 0
-                hours   = 0
+                days = 0
+                hours = 0
                 minutes = 0
                 seconds = 0
                 match = re.search(r'(\d+)D',length)
@@ -4682,10 +4872,10 @@ class Commands:
             globs['ui_lang'] = 'en'
     
     def tmpfile(self,suffix='.htm',Delete=0):
-        return tempfile.NamedTemporaryFile (mode     = 'w'
+        return tempfile.NamedTemporaryFile (mode = 'w'
                                            ,encoding = 'UTF-8'
-                                           ,suffix   = suffix
-                                           ,delete   = Delete
+                                           ,suffix = suffix
+                                           ,delete = Delete
                                            ).name
     
     def human_time(self,delta):
@@ -4696,15 +4886,15 @@ class Commands:
             if isinstance(delta,int) or isinstance(delta,float):
                 # 'datetime' will output years even for small integers
                 # https://kalkulator.pro/year-to-second.html
-                years   = delta // 31536000.00042889
+                years = delta // 31536000.00042889
                 all_sec = years * 31536000.00042889
-                months  = (delta - all_sec) // 2592000.0000000005
+                months = (delta - all_sec) // 2592000.0000000005
                 all_sec += months * 2592000.0000000005
-                weeks   = (delta - all_sec) // 604800
+                weeks = (delta - all_sec) // 604800
                 all_sec += weeks * 604800
-                days    = (delta - all_sec) // 86400
+                days = (delta - all_sec) // 86400
                 all_sec += days * 86400
-                hours   = (delta - all_sec) // 3600
+                hours = (delta - all_sec) // 3600
                 all_sec += hours * 3600
                 minutes = (delta - all_sec) // 60
                 all_sec += minutes * 60
@@ -4737,22 +4927,29 @@ class Commands:
         return result
     
     def cancel(self,func):
-        log.append (func
-                   ,_('WARNING')
+        log.append (func,_('WARNING')
                    ,_('Operation has been canceled.')
                    )
     
     def empty(self,func):
-        log.append (func
-                   ,_('WARNING')
+        log.append (func,_('WARNING')
                    ,_('Empty input is not allowed!')
                    )
+    
+    def not_ready(self,func):
+        objs.mes (func,_('INFO')
+                 ,_('Not implemented yet!')
+                 )
 
 
 ''' If there are problems with import or tkinter's wait_variable, put
     this beneath 'if __name__'
 '''
-com  = Commands()
+com = Commands()
+oss = OSSpecific()
+log = Log (Use = True
+           ,Short = False
+           )
 objs = Objects()
 
 
@@ -4766,10 +4963,10 @@ if __name__ == '__main__':
         import sharedGUI as sg
         sg.objs.start()
     objs = Objects()
-    objs.mes (func    = f
-             ,level   = _('INFO')
+    objs.mes (func = f
+             ,level = _('INFO')
              ,message = _('Nothing to do!')
-             ,Silent  = Silent
+             ,Silent = Silent
              )
     if not Silent:
         sg.objs.end()

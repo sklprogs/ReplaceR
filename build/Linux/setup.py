@@ -8,13 +8,13 @@ buildOptions = dict (packages = []
                     )
 
 executables = [Executable ('replacer.py'
-                          ,base       = 'Console'
+                          ,base = 'Console'
                           ,targetName = 'replacer'
                           )
               ]
 
-setup (name        = 'ReplaceR'
-      ,version     = '1'
+setup (name = 'ReplaceR'
+      ,version = '1'
       ,description = 'Simple batch replace in text files/clipboard'
       ,options = dict(build_exe=buildOptions)
       ,executables = executables
